@@ -17,7 +17,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #16231a;
+      background: #050817;
       font-family: Arial, sans-serif;
       touch-action: none;
     }
@@ -26,8 +26,12 @@
       position: fixed;
       inset: 0;
       overflow: hidden;
-      background: #79a96b;
+      background: #050817;
     }
+
+    /* =========================
+       NIGHT MAP
+    ========================== */
 
     #world {
       position: absolute;
@@ -35,100 +39,219 @@
       height: 1200px;
 
       background:
-        radial-gradient(
-          circle at 20% 30%,
-          rgba(255,255,255,.08) 0 3px,
-          transparent 4px
-        ),
-        #79a96b;
+        radial-gradient(circle at 12% 15%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 20% 42%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 31% 10%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 43% 27%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 55% 12%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 68% 24%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 79% 12%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 91% 25%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 15% 75%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 30% 88%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 47% 72%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 64% 90%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 81% 73%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 94% 88%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        linear-gradient(
+          135deg,
+          #050b20,
+          #09142d 45%,
+          #0d1934
+        );
     }
 
-    /* PATHS */
+    /* MOON */
+
+    #moon {
+      position: absolute;
+      right: 150px;
+      top: 80px;
+
+      width: 115px;
+      height: 115px;
+
+      border-radius: 50%;
+
+      background: #fff4c7;
+
+      box-shadow:
+        0 0 20px rgba(255,244,199,.55),
+        0 0 45px rgba(255,244,199,.25);
+
+      z-index: 1;
+    }
+
+    #moon::after {
+      content: "";
+
+      position: absolute;
+
+      width: 115px;
+      height: 115px;
+
+      border-radius: 50%;
+
+      background: #09142d;
+
+      left: 28px;
+      top: -10px;
+    }
+
+    /* BACKGROUND STARS */
+
+    .background-star {
+      position: absolute;
+      z-index: 2;
+
+      color: white;
+
+      font-size: 10px;
+
+      opacity: .8;
+
+      user-select: none;
+    }
+
+    .background-star.big {
+      font-size: 15px;
+    }
+
+    /* =========================
+       PATHS
+    ========================== */
 
     .path {
       position: absolute;
-      background: #c8ad7b;
+
+      background: #202d48;
+
       border-radius: 100px;
-      opacity: .9;
+
+      border: 2px solid rgba(160,180,215,.12);
+
+      opacity: .95;
     }
 
     .path.one {
       width: 1000px;
       height: 110px;
+
       left: 350px;
       top: 500px;
+
       transform: rotate(8deg);
     }
 
     .path.two {
       width: 100px;
       height: 700px;
+
       left: 850px;
       top: 200px;
+
       transform: rotate(-8deg);
     }
 
-    /* TREES */
+    /* =========================
+       TREES
+    ========================== */
 
     .tree {
       position: absolute;
+
       width: 70px;
       height: 90px;
+
       font-size: 65px;
+
       user-select: none;
+
+      filter:
+        brightness(.35)
+        saturate(.7)
+        drop-shadow(0 5px 5px rgba(0,0,0,.5));
     }
 
-    /* PLAYER */
+    /* =========================
+       PLAYER
+    ========================== */
 
     #player {
       position: absolute;
+
       width: 42px;
       height: 58px;
+
       left: 900px;
       top: 600px;
+
       z-index: 20;
+
       transform: translate(-50%, -50%);
+
       user-select: none;
+
+      filter:
+        drop-shadow(0 0 7px rgba(255,255,255,.2));
     }
 
     #player .head {
       position: absolute;
+
       width: 28px;
       height: 28px;
+
       left: 7px;
       top: 4px;
+
       background: #f2c6a0;
+
       border-radius: 50%;
+
       z-index: 3;
     }
 
     #player .hair {
       position: absolute;
+
       width: 31px;
       height: 18px;
+
       left: 5px;
       top: 1px;
+
       background: #2b211d;
+
       border-radius: 18px 18px 8px 8px;
+
       z-index: 4;
     }
 
     #player .body {
       position: absolute;
+
       width: 30px;
       height: 24px;
+
       left: 6px;
       top: 30px;
+
       background: #3d5366;
+
       border-radius: 7px 7px 4px 4px;
     }
 
     #player .leg {
       position: absolute;
+
       width: 9px;
       height: 15px;
+
       top: 50px;
+
       background: #20242a;
+
       border-radius: 4px;
     }
 
@@ -140,171 +263,190 @@
       right: 9px;
     }
 
-    /* STARS */
+    /* =========================
+       COLLECTIBLE STARS
+    ========================== */
 
     .star {
       position: absolute;
+
       width: 55px;
       height: 55px;
+
       font-size: 48px;
+
       z-index: 10;
+
       transform: translate(-50%, -50%);
-      animation: float 1.6s ease-in-out infinite;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,.7));
+
+      filter:
+        drop-shadow(0 0 8px rgba(255,255,220,.95))
+        drop-shadow(0 0 18px rgba(255,255,220,.5));
+
       user-select: none;
     }
 
+    /* LOCKED STARS */
+
     .star.locked {
-      filter: grayscale(1) brightness(.55);
-      opacity: .65;
-      animation: lockedFloat 2s ease-in-out infinite;
+      filter: grayscale(1) brightness(.45);
+
+      opacity: .6;
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translate(-50%, -50%) translateY(0);
-      }
-
-      50% {
-        transform: translate(-50%, -50%) translateY(-8px);
-      }
-    }
-
-    @keyframes lockedFloat {
-      0%, 100% {
-        transform: translate(-50%, -50%);
-      }
-
-      50% {
-        transform: translate(-50%, -50%) translateY(-3px);
-      }
-    }
-
-    /* TOP UI */
+    /* =========================
+       TOP UI
+    ========================== */
 
     #instructions {
       position: fixed;
+
       top: 18px;
       left: 50%;
+
       transform: translateX(-50%);
+
       z-index: 100;
 
       padding: 10px 17px;
+
       border-radius: 25px;
 
-      background: rgba(20,30,22,.72);
+      background: rgba(4,9,24,.8);
+
+      border: 1px solid rgba(255,255,255,.12);
+
       color: white;
 
       font-size: 14px;
+
       text-align: center;
+
       white-space: nowrap;
     }
 
     #counter {
       position: fixed;
+
       top: 18px;
       right: 16px;
+
       z-index: 100;
 
       padding: 9px 13px;
+
       border-radius: 20px;
-      background: rgba(20,30,22,.72);
+
+      background: rgba(4,9,24,.8);
+
+      border: 1px solid rgba(255,255,255,.12);
+
       color: white;
 
       font-size: 14px;
     }
 
-    /* LOCK MESSAGE */
+    /* =========================
+       LOCK MESSAGE
+    ========================== */
 
     #lockMessage {
       position: fixed;
+
       left: 50%;
       bottom: 35px;
-      transform: translateX(-50%) translateY(20px);
+
+      transform: translateX(-50%);
 
       z-index: 150;
 
       padding: 12px 18px;
+
       border-radius: 20px;
 
-      background: rgba(20,30,22,.9);
+      background: rgba(4,9,24,.92);
+
+      border: 1px solid rgba(255,255,255,.12);
+
       color: white;
 
       font-size: 14px;
+
       text-align: center;
 
-      opacity: 0;
-      pointer-events: none;
-
-      transition:
-        opacity .25s ease,
-        transform .25s ease;
+      display: none;
     }
 
-    #lockMessage.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* POPUP */
+    /* =========================
+       POPUP
+    ========================== */
 
     #popup {
       position: fixed;
+
       inset: 0;
+
       z-index: 200;
 
       display: none;
+
       align-items: center;
       justify-content: center;
 
       padding: 20px;
-      background: rgba(0,0,0,.65);
+
+      background: rgba(0,0,15,.75);
     }
 
     #popupBox {
       width: min(90vw, 400px);
+
       max-height: 90vh;
+
       overflow-y: auto;
 
       padding: 18px;
-      background: #fffdf7;
+
+      background: #10182b;
+
+      border: 1px solid rgba(255,255,255,.15);
+
       border-radius: 22px;
+
       text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,.35);
 
-      animation: popupIn .25s ease;
-    }
-
-    @keyframes popupIn {
-      from {
-        transform: scale(.85);
-        opacity: 0;
-      }
-
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      box-shadow:
+        0 15px 40px rgba(0,0,0,.5),
+        0 0 25px rgba(100,130,200,.15);
     }
 
     #popupImage {
       width: 100%;
+
       max-height: 55vh;
+
       object-fit: contain;
+
       border-radius: 15px;
+
       display: block;
+
       margin-bottom: 15px;
     }
 
     #popupTitle {
       margin-bottom: 10px;
-      color: #27352a;
+
+      color: white;
+
       font-size: 21px;
     }
 
     #popupText {
-      color: #4b514c;
+      color: #d9deea;
+
       line-height: 1.6;
+
       font-size: 16px;
     }
 
@@ -312,13 +454,19 @@
       margin-top: 18px;
 
       border: none;
+
       border-radius: 25px;
+
       padding: 12px 25px;
 
-      background: #27352a;
-      color: white;
+      background: #e8d58a;
+
+      color: #10182b;
 
       font-size: 15px;
+
+      font-weight: bold;
+
       cursor: pointer;
     }
   </style>
@@ -338,57 +486,141 @@
 
     <div id="world">
 
+      <!-- MOON -->
+
+      <div id="moon"></div>
+
+      <!-- BACKGROUND STARS -->
+
+      <div class="background-star big" style="left:120px; top:180px;">✦</div>
+      <div class="background-star" style="left:220px; top:110px;">·</div>
+      <div class="background-star" style="left:380px; top:170px;">✦</div>
+      <div class="background-star" style="left:540px; top:90px;">·</div>
+      <div class="background-star big" style="left:650px; top:190px;">✦</div>
+      <div class="background-star" style="left:820px; top:120px;">·</div>
+      <div class="background-star" style="left:960px; top:180px;">✦</div>
+      <div class="background-star" style="left:1100px; top:100px;">·</div>
+      <div class="background-star big" style="left:1250px; top:190px;">✦</div>
+      <div class="background-star" style="left:1400px; top:120px;">·</div>
+      <div class="background-star" style="left:1580px; top:220px;">✦</div>
+      <div class="background-star" style="left:1720px; top:130px;">·</div>
+
+      <div class="background-star" style="left:170px; top:600px;">·</div>
+      <div class="background-star big" style="left:430px; top:570px;">✦</div>
+      <div class="background-star" style="left:680px; top:700px;">·</div>
+      <div class="background-star" style="left:900px; top:600px;">✦</div>
+      <div class="background-star" style="left:1150px; top:680px;">·</div>
+      <div class="background-star big" style="left:1380px; top:570px;">✦</div>
+      <div class="background-star" style="left:1680px; top:650px;">·</div>
+
+      <div class="background-star big" style="left:170px; top:1000px;">✦</div>
+      <div class="background-star" style="left:350px; top:1080px;">·</div>
+      <div class="background-star" style="left:600px; top:1000px;">✦</div>
+      <div class="background-star" style="left:850px; top:1100px;">·</div>
+      <div class="background-star big" style="left:1080px; top:1010px;">✦</div>
+      <div class="background-star" style="left:1320px; top:1080px;">·</div>
+      <div class="background-star" style="left:1500px; top:1000px;">✦</div>
+      <div class="background-star big" style="left:1700px; top:1080px;">·</div>
+
       <!-- PATHS -->
 
       <div class="path one"></div>
       <div class="path two"></div>
 
-      <!-- TREES -->
+      <!-- NIGHT TREES -->
 
-      <div class="tree" style="left:120px; top:120px;">🌳</div>
+      <div class="tree" style="left:120px; top:120px;">🌲</div>
       <div class="tree" style="left:300px; top:250px;">🌲</div>
-      <div class="tree" style="left:500px; top:100px;">🌳</div>
+      <div class="tree" style="left:500px; top:100px;">🌲</div>
       <div class="tree" style="left:700px; top:300px;">🌲</div>
-      <div class="tree" style="left:1050px; top:130px;">🌳</div>
+      <div class="tree" style="left:1050px; top:130px;">🌲</div>
       <div class="tree" style="left:1300px; top:300px;">🌲</div>
-      <div class="tree" style="left:1550px; top:150px;">🌳</div>
+      <div class="tree" style="left:1550px; top:150px;">🌲</div>
 
       <div class="tree" style="left:150px; top:800px;">🌲</div>
-      <div class="tree" style="left:450px; top:950px;">🌳</div>
+      <div class="tree" style="left:450px; top:950px;">🌲</div>
       <div class="tree" style="left:750px; top:850px;">🌲</div>
-      <div class="tree" style="left:1100px; top:950px;">🌳</div>
+      <div class="tree" style="left:1100px; top:950px;">🌲</div>
       <div class="tree" style="left:1450px; top:800px;">🌲</div>
-      <div class="tree" style="left:1650px; top:1000px;">🌳</div>
+      <div class="tree" style="left:1650px; top:1000px;">🌲</div>
 
-      <!-- 8 STARS -->
+      <!-- =========================
+           8 COLLECTIBLE STARS
+           
+           ONLY STAR 1 IS UNLOCKED
+      ========================== -->
 
-      <div class="star" data-id="1" style="left:250px; top:400px;">⭐</div>
-      <div class="star locked" data-id="2" style="left:500px; top:750px;">🔒</div>
-      <div class="star locked" data-id="3" style="left:750px; top:250px;">🔒</div>
-      <div class="star locked" data-id="4" style="left:1050px; top:850px;">🔒</div>
-      <div class="star locked" data-id="5" style="left:1250px; top:400px;">🔒</div>
-      <div class="star locked" data-id="6" style="left:1450px; top:700px;">🔒</div>
-      <div class="star locked" data-id="7" style="left:1550px; top:350px;">🔒</div>
-      <div class="star locked" data-id="8" style="left:1600px; top:900px;">🔒</div>
+      <div
+        class="star"
+        data-id="1"
+        style="left:250px; top:400px;"
+      >⭐</div>
+
+      <div
+        class="star locked"
+        data-id="2"
+        style="left:500px; top:750px;"
+      >🔒</div>
+
+      <div
+        class="star locked"
+        data-id="3"
+        style="left:750px; top:250px;"
+      >🔒</div>
+
+      <div
+        class="star locked"
+        data-id="4"
+        style="left:1050px; top:850px;"
+      >🔒</div>
+
+      <div
+        class="star locked"
+        data-id="5"
+        style="left:1250px; top:400px;"
+      >🔒</div>
+
+      <div
+        class="star locked"
+        data-id="6"
+        style="left:1450px; top:700px;"
+      >🔒</div>
+
+      <div
+        class="star locked"
+        data-id="7"
+        style="left:1550px; top:350px;"
+      >🔒</div>
+
+      <div
+        class="star locked"
+        data-id="8"
+        style="left:1600px; top:900px;"
+      >🔒</div>
 
       <!-- PLAYER -->
 
       <div id="player">
+
         <div class="hair"></div>
         <div class="head"></div>
         <div class="body"></div>
+
         <div class="leg left"></div>
         <div class="leg right"></div>
+
       </div>
 
     </div>
   </div>
 
+
   <!-- LOCK MESSAGE -->
 
   <div id="lockMessage">
-    🔒 You need to find the previous star first.
+    🔒 Find the previous star first.
   </div>
+
 
   <!-- POPUP -->
 
@@ -396,7 +628,11 @@
 
     <div id="popupBox">
 
-      <img id="popupImage" src="" alt="Memory">
+      <img
+        id="popupImage"
+        src=""
+        alt="Memory"
+      >
 
       <h2 id="popupTitle">
         ⭐ A little something
@@ -414,7 +650,12 @@
 
   </div>
 
+
   <script>
+
+    /* =========================
+       ELEMENTS
+    ========================== */
 
     const game =
       document.getElementById("game");
@@ -450,7 +691,9 @@
       document.getElementById("lockMessage");
 
 
-    /* PLAYER */
+    /* =========================
+       PLAYER
+    ========================== */
 
     let playerX = 900;
     let playerY = 600;
@@ -461,30 +704,44 @@
     const speed = 4;
 
 
-    /* CAMERA */
+    /* =========================
+       CAMERA
+    ========================== */
 
     let cameraX = 0;
     let cameraY = 0;
 
 
-    /* STAR PROGRESSION */
+    /* =========================
+       STAR PROGRESSION
+       
+       Star 1 starts unlocked.
+       After Star 1 is collected,
+       Star 2 unlocks.
+       
+       And so on until Star 8.
+    ========================== */
 
     let collectedStars = 0;
 
-    // Star 1 is the first star available.
     let unlockedStar = 1;
 
 
-    /* STAR STATE */
+    /* =========================
+       STAR STATE
+    ========================== */
 
     stars.forEach(function(star) {
 
-      star.dataset.collected = "false";
+      star.dataset.collected =
+        "false";
 
     });
 
 
-    /* STAR CONTENT */
+    /* =========================
+       ORIGINAL STAR MESSAGES
+    ========================== */
 
     const starContent = {
 
@@ -539,7 +796,9 @@
     };
 
 
-    /* UPDATE STAR LOCKS */
+    /* =========================
+       UPDATE STAR LOCKS
+    ========================== */
 
     function updateStarLocks() {
 
@@ -549,26 +808,44 @@
           Number(star.dataset.id);
 
 
+        /* Already collected */
+
         if (
           star.dataset.collected === "true"
         ) {
 
-          star.style.display = "none";
+          star.style.display =
+            "none";
 
           return;
 
         }
 
 
+        /* Unlocked */
+
         if (id <= unlockedStar) {
 
-          star.classList.remove("locked");
-          star.textContent = "⭐";
+          star.classList.remove(
+            "locked"
+          );
 
-        } else {
+          star.textContent =
+            "⭐";
 
-          star.classList.add("locked");
-          star.textContent = "🔒";
+        }
+
+
+        /* Locked */
+
+        else {
+
+          star.classList.add(
+            "locked"
+          );
+
+          star.textContent =
+            "🔒";
 
         }
 
@@ -577,15 +854,22 @@
     }
 
 
-    /* TAP TO MOVE */
+    /* =========================
+       TAP TO MOVE
+    ========================== */
 
     game.addEventListener(
       "pointerdown",
       function(event) {
 
-        if (popup.style.display === "flex") {
+        if (
+          popup.style.display === "flex"
+        ) {
+
           return;
+
         }
+
 
         targetX =
           event.clientX - cameraX;
@@ -597,7 +881,9 @@
     );
 
 
-    /* DISTANCE */
+    /* =========================
+       DISTANCE
+    ========================== */
 
     function distanceBetween(
       x1,
@@ -606,8 +892,11 @@
       y2
     ) {
 
-      const dx = x2 - x1;
-      const dy = y2 - y1;
+      const dx =
+        x2 - x1;
+
+      const dy =
+        y2 - y1;
 
       return Math.sqrt(
         dx * dx +
@@ -617,269 +906,74 @@
     }
 
 
-    /* LOCK MESSAGE */
+    /* =========================
+       LOCK MESSAGE
+    ========================== */
 
     let lockTimeout;
 
-    function showLockMessage(starNumber) {
+    function showLockMessage(
+      starNumber
+    ) {
 
       lockMessage.textContent =
         `🔒 You need to find Star ${starNumber - 1} first.`;
 
-      lockMessage.classList.add("show");
+      lockMessage.style.display =
+        "block";
 
       clearTimeout(lockTimeout);
 
       lockTimeout =
-        setTimeout(function() {
+        setTimeout(
+          function() {
 
-          lockMessage.classList.remove("show");
+            lockMessage.style.display =
+              "none";
 
-        }, 1800);
+          },
+          1800
+        );
 
     }
 
 
-    /* CHECK STARS */
+    /* =========================
+       CHECK STARS
+    ========================== */
 
     function checkStars() {
 
-      stars.forEach(function(star) {
+      stars.forEach(
+        function(star) {
 
-        if (
-          star.dataset.collected === "true"
-        ) {
+          /* Ignore collected stars */
 
-          return;
-
-        }
-
-
-        const id =
-          Number(star.dataset.id);
-
-
-        const starX =
-          parseFloat(star.style.left);
-
-        const starY =
-          parseFloat(star.style.top);
-
-
-        const distance =
-          distanceBetween(
-            playerX,
-            playerY,
-            starX,
-            starY
-          );
-
-
-        if (distance < 70) {
-
-
-          /* LOCKED STAR */
-
-          if (id > unlockedStar) {
-
-            showLockMessage(id);
+          if (
+            star.dataset.collected === "true"
+          ) {
 
             return;
 
           }
 
 
-          /* UNLOCKED STAR */
+          const id =
+            Number(star.dataset.id);
 
-          const content =
-            starContent[id];
 
+          const starX =
+            parseFloat(
+              star.style.left
+            );
 
-          star.dataset.collected =
-            "true";
+          const starY =
+            parseFloat(
+              star.style.top
+            );
 
-          star.style.display =
-            "none";
 
-
-          collectedStars++;
-
-
-          /*
-            THIS IS THE IMPORTANT PART:
-
-            Once Star 1 is collected,
-            Star 2 unlocks.
-
-            Once Star 2 is collected,
-            Star 3 unlocks.
-
-            And so on.
-          */
-
-          if (id === unlockedStar) {
-
-            unlockedStar++;
-
-          }
-
-
-          counter.textContent =
-            `⭐ ${collectedStars} / 8`;
-
-
-          updateStarLocks();
-
-
-          /* SHOW MESSAGE */
-
-          popupImage.src =
-            content.image;
-
-          popupTitle.textContent =
-            content.title;
-
-          popupText.textContent =
-            content.text;
-
-          popup.style.display =
-            "flex";
-
-        }
-
-      });
-
-    }
-
-
-    /* CONTINUE */
-
-    continueButton.addEventListener(
-      "click",
-      function() {
-
-        popup.style.display =
-          "none";
-
-      }
-    );
-
-
-    /* GAME LOOP */
-
-    function update() {
-
-      const dx =
-        targetX - playerX;
-
-      const dy =
-        targetY - playerY;
-
-      const distance =
-        Math.sqrt(
-          dx * dx +
-          dy * dy
-        );
-
-
-      if (distance > 3) {
-
-        playerX +=
-          (dx / distance) * speed;
-
-        playerY +=
-          (dy / distance) * speed;
-
-      }
-
-
-      /* WORLD LIMITS */
-
-      playerX =
-        Math.max(
-          30,
-          Math.min(
-            1770,
-            playerX
-          )
-        );
-
-      playerY =
-        Math.max(
-          30,
-          Math.min(
-            1170,
-            playerY
-          )
-        );
-
-
-      /* PLAYER */
-
-      player.style.left =
-        playerX + "px";
-
-      player.style.top =
-        playerY + "px";
-
-
-      /* CAMERA */
-
-      const screenWidth =
-        window.innerWidth;
-
-      const screenHeight =
-        window.innerHeight;
-
-
-      cameraX =
-        screenWidth / 2 -
-        playerX;
-
-      cameraY =
-        screenHeight / 2 -
-        playerY;
-
-
-      cameraX =
-        Math.min(
-          0,
-          Math.max(
-            screenWidth - 1800,
-            cameraX
-          )
-        );
-
-
-      cameraY =
-        Math.min(
-          0,
-          Math.max(
-            screenHeight - 1200,
-            cameraY
-          )
-        );
-
-
-      world.style.transform =
-        `translate(${cameraX}px, ${cameraY}px)`;
-
-
-      /* STARS */
-
-      checkStars();
-
-
-      requestAnimationFrame(update);
-
-    }
-
-
-    /* START */
-
-    update();
-
-  </script>
-
-</body>
-</html>
+          const distance =
+            distanceBetween(
+              playerX,
+              p
