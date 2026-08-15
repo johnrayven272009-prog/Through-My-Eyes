@@ -39,11 +39,6 @@
           rgba(255,255,255,.08) 0 3px,
           transparent 4px
         ),
-        radial-gradient(
-          circle at 70% 65%,
-          rgba(255,255,255,.06) 0 3px,
-          transparent 4px
-        ),
         #79a96b;
     }
 
@@ -134,7 +129,6 @@
       top: 50px;
       background: #20242a;
       border-radius: 4px;
-      z-index: 1;
     }
 
     #player .leg.left {
@@ -185,8 +179,6 @@
 
       font-size: 14px;
       text-align: center;
-
-      pointer-events: none;
       white-space: nowrap;
     }
 
@@ -216,39 +208,64 @@
       align-items: center;
       justify-content: center;
 
-      padding: 25px;
-      background: rgba(0,0,0,.55);
+      padding: 20px;
+      background: rgba(0,0,0,.65);
     }
 
     #popupBox {
-      width: min(90vw, 420px);
-      padding: 25px;
+      width: min(90vw, 400px);
+      max-height: 90vh;
+      overflow-y: auto;
 
+      padding: 18px;
       background: #fffdf7;
       border-radius: 22px;
 
       text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,.3);
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
+
+      animation: popupIn .25s ease;
     }
 
-    #popupBox h2 {
-      margin-bottom: 12px;
-      font-size: 22px;
+    @keyframes popupIn {
+      from {
+        transform: scale(.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #popupImage {
+      width: 100%;
+      max-height: 55vh;
+      object-fit: contain;
+      border-radius: 15px;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    #popupTitle {
+      margin-bottom: 10px;
       color: #27352a;
+      font-size: 21px;
     }
 
-    #popupBox p {
+    #popupText {
       color: #4b514c;
       line-height: 1.6;
       font-size: 16px;
     }
 
     #continue {
-      margin-top: 20px;
+      margin-top: 18px;
 
       border: none;
       border-radius: 25px;
-      padding: 11px 24px;
+      padding: 12px 25px;
 
       background: #27352a;
       color: white;
@@ -297,35 +314,22 @@
       <!-- 8 STARS -->
 
       <div class="star" data-id="1" style="left:250px; top:400px;">⭐</div>
-
       <div class="star" data-id="2" style="left:500px; top:750px;">⭐</div>
-
       <div class="star" data-id="3" style="left:750px; top:250px;">⭐</div>
-
       <div class="star" data-id="4" style="left:1050px; top:850px;">⭐</div>
-
       <div class="star" data-id="5" style="left:1250px; top:400px;">⭐</div>
-
       <div class="star" data-id="6" style="left:1450px; top:700px;">⭐</div>
-
       <div class="star" data-id="7" style="left:1550px; top:350px;">⭐</div>
-
       <div class="star" data-id="8" style="left:1600px; top:900px;">⭐</div>
 
       <!-- PLAYER -->
 
       <div id="player">
-
         <div class="hair"></div>
-
         <div class="head"></div>
-
         <div class="body"></div>
-
         <div class="leg left"></div>
-
         <div class="leg right"></div>
-
       </div>
 
     </div>
@@ -337,11 +341,14 @@
 
     <div id="popupBox">
 
-      <h2>⭐ You found something</h2>
+      <img id="popupImage" src="" alt="Memory">
+
+      <h2 id="popupTitle">
+        ⭐ A little something
+      </h2>
 
       <p id="popupText">
-        This is where we'll eventually put one of Jil's pictures
-        and one of your compliments.
+        Your compliment will go here.
       </p>
 
       <button id="continue">
@@ -361,17 +368,20 @@
     const stars = document.querySelectorAll(".star");
 
     const popup = document.getElementById("popup");
+    const popupImage = document.getElementById("popupImage");
+    const popupTitle = document.getElementById("popupTitle");
     const popupText = document.getElementById("popupText");
-    const continueButton = document.getElementById("continue");
 
-    const counter = document.getElementById("counter");
+    const continueButton =
+      document.getElementById("continue");
 
-    /* PLAYER POSITION */
+    const counter =
+      document.getElementById("counter");
+
+    /* PLAYER */
 
     let playerX = 900;
     let playerY = 600;
-
-    /* MOVEMENT TARGET */
 
     let targetX = playerX;
     let targetY = playerY;
@@ -383,17 +393,67 @@
     let cameraX = 0;
     let cameraY = 0;
 
-    /* STAR COUNT */
+    /* STARS */
 
     let collectedStars = 0;
 
-    /* MARK ALL STARS AS NOT COLLECTED */
-
     stars.forEach(function(star) {
-
       star.dataset.collected = "false";
-
     });
+
+    /* STAR CONTENT */
+
+    const starContent = {
+
+      1: {
+        image: "photos/photo1.jpg",
+        title: "⭐ First little thing",
+        text: "Your compliment for this picture goes here."
+      },
+
+      2: {
+        image: "photos/photo2.jpg",
+        title: "⭐ Another reason",
+        text: "Your compliment for this picture goes here."
+      },
+
+      3: {
+        image: "photos/photo3.jpg",
+        title: "⭐ Something I notice",
+        text: "Your compliment for this picture goes here."
+      },
+
+      4: {
+        image: "photos/photo4.jpg",
+        title: "⭐ Just because",
+        text: "Your compliment for this picture goes here."
+      },
+
+      5: {
+        image: "photos/photo5.jpg",
+        title: "⭐ One more thing",
+        text: "Your compliment for this picture goes here."
+      },
+
+      6: {
+        image: "photos/photo6.jpg",
+        title: "⭐ You probably don't notice",
+        text: "Your compliment for this picture goes here."
+      },
+
+      7: {
+        image: "photos/photo7.jpg",
+        title: "⭐ Almost there",
+        text: "Your compliment for this picture goes here."
+      },
+
+      8: {
+        image: "photos/photo8.jpg",
+        title: "⭐ Through My Eyes",
+        text: "The final message will go here."
+      }
+
+    };
 
     /* TAP TO MOVE */
 
@@ -403,36 +463,51 @@
         return;
       }
 
-      targetX = event.clientX - cameraX;
-      targetY = event.clientY - cameraY;
+      targetX =
+        event.clientX - cameraX;
+
+      targetY =
+        event.clientY - cameraY;
 
     });
 
-    /* DISTANCE FUNCTION */
+    /* DISTANCE */
 
-    function distanceBetween(x1, y1, x2, y2) {
+    function distanceBetween(
+      x1,
+      y1,
+      x2,
+      y2
+    ) {
 
       const dx = x2 - x1;
       const dy = y2 - y1;
 
-      return Math.sqrt(dx * dx + dy * dy);
+      return Math.sqrt(
+        dx * dx + dy * dy
+      );
 
     }
 
-    /* CHECK FOR STARS */
+    /* CHECK STARS */
 
     function checkStars() {
 
       stars.forEach(function(star) {
 
-        if (star.dataset.collected === "true") {
+        if (
+          star.dataset.collected === "true"
+        ) {
           return;
         }
 
-        const starX = parseFloat(star.style.left);
-        const starY = parseFloat(star.style.top);
+        const starX =
+          parseFloat(star.style.left);
 
-        const distanceToStar =
+        const starY =
+          parseFloat(star.style.top);
+
+        const distance =
           distanceBetween(
             playerX,
             playerY,
@@ -440,21 +515,36 @@
             starY
           );
 
-        if (distanceToStar < 70) {
+        if (distance < 70) {
 
-          star.dataset.collected = "true";
+          const id =
+            star.dataset.id;
 
-          star.style.display = "none";
+          const content =
+            starContent[id];
+
+          star.dataset.collected =
+            "true";
+
+          star.style.display =
+            "none";
 
           collectedStars++;
 
           counter.textContent =
             `⭐ ${collectedStars} / 8`;
 
-          popupText.textContent =
-            `You found star ${collectedStars}! This is where we'll put Jil's picture and compliment.`;
+          popupImage.src =
+            content.image;
 
-          popup.style.display = "flex";
+          popupTitle.textContent =
+            content.title;
+
+          popupText.textContent =
+            content.text;
+
+          popup.style.display =
+            "flex";
 
         }
 
@@ -462,23 +552,32 @@
 
     }
 
-    /* CLOSE POPUP */
+    /* CONTINUE */
 
-    continueButton.addEventListener("click", function() {
+    continueButton.addEventListener(
+      "click",
+      function() {
 
-      popup.style.display = "none";
+        popup.style.display = "none";
 
-    });
+      }
+    );
 
     /* GAME LOOP */
 
     function update() {
 
-      const dx = targetX - playerX;
-      const dy = targetY - playerY;
+      const dx =
+        targetX - playerX;
+
+      const dy =
+        targetY - playerY;
 
       const distance =
-        Math.sqrt(dx * dx + dy * dy);
+        Math.sqrt(
+          dx * dx +
+          dy * dy
+        );
 
       if (distance > 3) {
 
@@ -490,21 +589,27 @@
 
       }
 
-      /* WORLD BOUNDARIES */
+      /* WORLD LIMITS */
 
       playerX =
         Math.max(
           30,
-          Math.min(1770, playerX)
+          Math.min(
+            1770,
+            playerX
+          )
         );
 
       playerY =
         Math.max(
           30,
-          Math.min(1170, playerY)
+          Math.min(
+            1170,
+            playerY
+          )
         );
 
-      /* PLAYER POSITION */
+      /* PLAYER */
 
       player.style.left =
         playerX + "px";
@@ -521,12 +626,12 @@
         window.innerHeight;
 
       cameraX =
-        screenWidth / 2 - playerX;
+        screenWidth / 2 -
+        playerX;
 
       cameraY =
-        screenHeight / 2 - playerY;
-
-      /* CAMERA LIMITS */
+        screenHeight / 2 -
+        playerY;
 
       cameraX =
         Math.min(
@@ -546,20 +651,16 @@
           )
         );
 
-      /* MOVE WORLD */
-
       world.style.transform =
         `translate(${cameraX}px, ${cameraY}px)`;
 
-      /* CHECK STARS */
+      /* STARS */
 
       checkStars();
 
       requestAnimationFrame(update);
 
     }
-
-    /* START GAME */
 
     update();
 
