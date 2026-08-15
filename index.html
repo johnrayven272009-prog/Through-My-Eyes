@@ -1,409 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-  <title>Through My Eyes</title>
+<title>Through My Eyes</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #16231a;
-      font-family: Arial, sans-serif;
-      touch-action: none;
-    }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #16231a;
+  font-family: Arial, sans-serif;
+  touch-action: none;
+}
 
-    #game {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      background: #79a96b;
-    }
+#game {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #79a96b;
+}
 
-    #world {
-      position: absolute;
-      width: 1800px;
-      height: 1200px;
-      background:
-        radial-gradient(
-          circle at 20% 30%,
-          rgba(255,255,255,.08) 0 3px,
-          transparent 4px
-        ),
-        #79a96b;
-    }
+#world {
+  position: absolute;
+  width: 1800px;
+  height: 1200px;
+  background: #79a96b;
+}
 
-    /* PATHS */
+/* PATHS */
 
-    .path {
-      position: absolute;
-      background: #c8ad7b;
-      border-radius: 100px;
-      opacity: .9;
-    }
+.path {
+  position: absolute;
+  background: #c8ad7b;
+  border-radius: 100px;
+  opacity: .9;
+}
 
-    .path.one {
-      width: 1000px;
-      height: 110px;
-      left: 350px;
-      top: 500px;
-      transform: rotate(8deg);
-    }
+.path.one {
+  width: 1000px;
+  height: 110px;
+  left: 350px;
+  top: 500px;
+  transform: rotate(8deg);
+}
 
-    .path.two {
-      width: 100px;
-      height: 700px;
-      left: 850px;
-      top: 200px;
-      transform: rotate(-8deg);
-    }
+.path.two {
+  width: 100px;
+  height: 700px;
+  left: 850px;
+  top: 200px;
+  transform: rotate(-8deg);
+}
 
-    /* TREES */
+/* TREES */
 
-    .tree {
-      position: absolute;
-      width: 70px;
-      height: 90px;
-      font-size: 65px;
-      user-select: none;
-    }
+.tree {
+  position: absolute;
+  width: 70px;
+  height: 90px;
+  font-size: 65px;
+  user-select: none;
+}
 
-    /* PLAYER */
+/* PLAYER */
 
-    #player {
-      position: absolute;
-      width: 42px;
-      height: 58px;
-      left: 900px;
-      top: 600px;
-      z-index: 20;
-      transform: translate(-50%, -50%);
-      user-select: none;
-    }
+#player {
+  position: absolute;
+  width: 42px;
+  height: 58px;
+  left: 900px;
+  top: 600px;
+  z-index: 20;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
 
-    #player .head {
-      position: absolute;
-      width: 28px;
-      height: 28px;
-      left: 7px;
-      top: 4px;
-      background: #f2c6a0;
-      border-radius: 50%;
-      z-index: 3;
-    }
+#player .head {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 7px;
+  top: 4px;
+  background: #f2c6a0;
+  border-radius: 50%;
+  z-index: 3;
+}
 
-    #player .hair {
-      position: absolute;
-      width: 31px;
-      height: 18px;
-      left: 5px;
-      top: 1px;
-      background: #2b211d;
-      border-radius: 18px 18px 8px 8px;
-      z-index: 4;
-    }
+#player .hair {
+  position: absolute;
+  width: 31px;
+  height: 18px;
+  left: 5px;
+  top: 1px;
+  background: #2b211d;
+  border-radius: 18px 18px 8px 8px;
+  z-index: 4;
+}
 
-    #player .body {
-      position: absolute;
-      width: 30px;
-      height: 24px;
-      left: 6px;
-      top: 30px;
-      background: #3d5366;
-      border-radius: 7px 7px 4px 4px;
-    }
+#player .body {
+  position: absolute;
+  width: 30px;
+  height: 24px;
+  left: 6px;
+  top: 30px;
+  background: #3d5366;
+  border-radius: 7px 7px 4px 4px;
+}
 
-    #player .leg {
-      position: absolute;
-      width: 9px;
-      height: 15px;
-      top: 50px;
-      background: #20242a;
-      border-radius: 4px;
-    }
+#player .leg {
+  position: absolute;
+  width: 9px;
+  height: 15px;
+  top: 50px;
+  background: #20242a;
+  border-radius: 4px;
+}
 
-    #player .leg.left {
-      left: 9px;
-    }
+#player .leg.left {
+  left: 9px;
+}
 
-    #player .leg.right {
-      right: 9px;
-    }
+#player .leg.right {
+  right: 9px;
+}
 
-    /* STARS */
+/* STARS */
 
-    .star {
-      position: absolute;
-      width: 55px;
-      height: 55px;
-      font-size: 48px;
-      z-index: 10;
-      transform: translate(-50%, -50%);
-      animation: float 1.6s ease-in-out infinite;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,.7));
-    }
+.star {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  font-size: 48px;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  animation: float 1.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.7));
+}
 
-    @keyframes float {
-      0%, 100% {
-        transform: translate(-50%, -50%) translateY(0);
-      }
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
 
-      50% {
-        transform: translate(-50%, -50%) translateY(-8px);
-      }
-    }
+  50% {
+    transform: translate(-50%, -50%) translateY(-8px);
+  }
+}
 
-    /* TOP UI */
+/* UI */
 
-    #instructions {
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
+#instructions {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
 
-      padding: 10px 17px;
-      border-radius: 25px;
+  padding: 10px 17px;
+  border-radius: 25px;
 
-      background: rgba(20,30,22,.72);
-      color: white;
+  background: rgba(20,30,22,.72);
+  color: white;
 
-      font-size: 14px;
-      text-align: center;
-      white-space: nowrap;
-    }
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
 
-    #counter {
-      position: fixed;
-      top: 18px;
-      right: 16px;
-      z-index: 100;
+#counter {
+  position: fixed;
+  top: 18px;
+  right: 16px;
+  z-index: 100;
 
-      padding: 9px 13px;
-      border-radius: 20px;
+  padding: 9px 13px;
+  border-radius: 20px;
 
-      background: rgba(20,30,22,.72);
-      color: white;
+  background: rgba(20,30,22,.72);
+  color: white;
 
-      font-size: 14px;
-    }
+  font-size: 14px;
+}
 
-    /* POPUP */
+/* POPUP */
 
-    #popup {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
+#popup {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
 
-      display: none;
-      align-items: center;
-      justify-content: center;
+  display: none;
+  align-items: center;
+  justify-content: center;
 
-      padding: 20px;
-      background: rgba(0,0,0,.65);
-    }
+  padding: 20px;
+  background: rgba(0,0,0,.65);
+}
 
-    #popupBox {
-      width: min(90vw, 400px);
-      max-height: 90vh;
-      overflow-y: auto;
+#popupBox {
+  width: min(90vw, 400px);
+  max-height: 90vh;
+  overflow-y: auto;
 
-      padding: 18px;
-      background: #fffdf7;
-      border-radius: 22px;
+  padding: 18px;
+  background: #fffdf7;
+  border-radius: 22px;
 
-      text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,.35);
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,.35);
 
-      animation: popupIn .25s ease;
-    }
+  animation: popupIn .25s ease;
+}
 
-    @keyframes popupIn {
-      from {
-        transform: scale(.85);
-        opacity: 0;
-      }
+@keyframes popupIn {
+  from {
+    transform: scale(.85);
+    opacity: 0;
+  }
 
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
-    #popupImage {
-      width: 100%;
-      max-height: 55vh;
-      object-fit: contain;
-      border-radius: 15px;
-      display: block;
-      margin-bottom: 15px;
-    }
+#popupImage {
+  width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  border-radius: 15px;
+  display: block;
+  margin-bottom: 15px;
+}
 
-    #popupTitle {
-      margin-bottom: 10px;
-      color: #27352a;
-      font-size: 21px;
-    }
+#popupTitle {
+  margin-bottom: 10px;
+  color: #27352a;
+  font-size: 21px;
+}
 
-    #popupText {
-      color: #4b514c;
-      line-height: 1.6;
-      font-size: 16px;
-    }
+#popupText {
+  color: #4b514c;
+  line-height: 1.6;
+  font-size: 16px;
+}
 
-    #continue {
-      margin-top: 18px;
+#continue {
+  margin-top: 18px;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
 
-      border: none;
-      border-radius: 25px;
-      padding: 12px 25px;
+  background: #27352a;
+  color: white;
 
-      background: #27352a;
-      color: white;
-
-      font-size: 15px;
-    }
-  </style>
+  font-size: 15px;
+}
+</style>
 </head>
 
 <body>
 
-  <div id="game">
+<div id="game">
 
-    <div id="instructions">
-      Tap anywhere to move ⭐
-    </div>
-
-    <div id="counter">
-      ⭐ 0 / 8
-    </div>
-
-    <div id="world">
-
-      <!-- PATHS -->
-
-      <div class="path one"></div>
-      <div class="path two"></div>
-
-      <!-- TREES -->
-
-      <div class="tree" style="left:120px; top:120px;">🌳</div>
-      <div class="tree" style="left:300px; top:250px;">🌲</div>
-      <div class="tree" style="left:500px; top:100px;">🌳</div>
-      <div class="tree" style="left:700px; top:300px;">🌲</div>
-      <div class="tree" style="left:1050px; top:130px;">🌳</div>
-      <div class="tree" style="left:1300px; top:300px;">🌲</div>
-      <div class="tree" style="left:1550px; top:150px;">🌳</div>
-
-      <div class="tree" style="left:150px; top:800px;">🌲</div>
-      <div class="tree" style="left:450px; top:950px;">🌳</div>
-      <div class="tree" style="left:750px; top:850px;">🌲</div>
-      <div class="tree" style="left:1100px; top:950px;">🌳</div>
-      <div class="tree" style="left:1450px; top:800px;">🌲</div>
-      <div class="tree" style="left:1650px; top:1000px;">🌳</div>
-
-      <!-- 8 STARS -->
-
-      <div class="star" data-id="1" style="left:250px; top:400px;">⭐</div>
-      <div class="star" data-id="2" style="left:500px; top:750px;">⭐</div>
-      <div class="star" data-id="3" style="left:750px; top:250px;">⭐</div>
-      <div class="star" data-id="4" style="left:1050px; top:850px;">⭐</div>
-      <div class="star" data-id="5" style="left:1250px; top:400px;">⭐</div>
-      <div class="star" data-id="6" style="left:1450px; top:700px;">⭐</div>
-      <div class="star" data-id="7" style="left:1550px; top:350px;">⭐</div>
-      <div class="star" data-id="8" style="left:1600px; top:900px;">⭐</div>
-
-      <!-- PLAYER -->
-
-      <div id="player">
-        <div class="hair"></div>
-        <div class="head"></div>
-        <div class="body"></div>
-        <div class="leg left"></div>
-        <div class="leg right"></div>
-      </div>
-
-    </div>
+  <div id="instructions">
+    Tap anywhere to move ⭐
   </div>
 
-  <!-- POPUP -->
+  <div id="counter">
+    ⭐ 0 / 8
+  </div>
 
-  <div id="popup">
+  <div id="world">
 
-    <div id="popupBox">
+    <!-- PATHS -->
 
-      <img id="popupImage" src="" alt="Memory">
+    <div class="path one"></div>
+    <div class="path two"></div>
 
-      <h2 id="popupTitle">
-        ⭐ A little something
-      </h2>
+    <!-- TREES -->
 
-      <p id="popupText">
-        Your compliment will go here.
-      </p>
+    <div class="tree" style="left:120px; top:120px;">🌳</div>
+    <div class="tree" style="left:300px; top:250px;">🌲</div>
+    <div class="tree" style="left:500px; top:100px;">🌳</div>
+    <div class="tree" style="left:700px; top:300px;">🌲</div>
+    <div class="tree" style="left:1050px; top:130px;">🌳</div>
+    <div class="tree" style="left:1300px; top:300px;">🌲</div>
+    <div class="tree" style="left:1550px; top:150px;">🌳</div>
 
-      <button id="continue">
-        Continue
-      </button>
+    <div class="tree" style="left:150px; top:800px;">🌲</div>
+    <div class="tree" style="left:450px; top:950px;">🌳</div>
+    <div class="tree" style="left:750px; top:850px;">🌲</div>
+    <div class="tree" style="left:1100px; top:950px;">🌳</div>
+    <div class="tree" style="left:1450px; top:800px;">🌲</div>
+    <div class="tree" style="left:1650px; top:1000px;">🌳</div>
 
+    <!-- 8 STARS -->
+
+    <div class="star" data-id="1" style="left:250px; top:400px;">⭐</div>
+    <div class="star" data-id="2" style="left:500px; top:750px;">⭐</div>
+    <div class="star" data-id="3" style="left:750px; top:250px;">⭐</div>
+    <div class="star" data-id="4" style="left:1050px; top:850px;">⭐</div>
+    <div class="star" data-id="5" style="left:1250px; top:400px;">⭐</div>
+    <div class="star" data-id="6" style="left:1450px; top:700px;">⭐</div>
+    <div class="star" data-id="7" style="left:1550px; top:350px;">⭐</div>
+    <div class="star" data-id="8" style="left:1600px; top:900px;">⭐</div>
+
+    <!-- PLAYER -->
+
+    <div id="player">
+      <div class="hair"></div>
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
     </div>
 
   </div>
+</div>
 
-  <script>
+<!-- POPUP -->
 
-    const game = document.getElementById("game");
-    const world = document.getElementById("world");
-    const player = document.getElementById("player");
+<div id="popup">
 
-    const stars = document.querySelectorAll(".star");
+  <div id="popupBox">
 
-    const popup = document.getElementById("popup");
-    const popupImage = document.getElementById("popupImage");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupText = document.getElementById("popupText");
+    <img id="popupImage" src="" alt="Memory">
 
-    const continueButton =
-      document.getElementById("continue");
+    <h2 id="popupTitle">
+      ⭐ A little something
+    </h2>
 
-    const counter =
-      document.getElementById("counter");
+    <p id="popupText">
+      Your compliment will go here.
+    </p>
 
-    /* PLAYER */
+    <button id="continue">
+      Continue
+    </button>
 
-    let playerX = 900;
-    let playerY = 600;
+  </div>
 
-    let targetX = playerX;
-    let targetY = playerY;
+</div>
 
-    const speed = 4;
+<script>
 
-    /* CAMERA */
+/* =========================
+   ELEMENTS
+========================= */
 
-    let cameraX = 0;
-    let cameraY = 0;
+const game = document.getElementById("game");
+const world = document.getElementById("world");
+const player = document.getElementById("player");
 
-    /* STARS */
+const stars = document.querySelectorAll(".star");
 
-    let collectedStars = 0;
+const popup = document.getElementById("popup");
+const popupImage = document.getElementById("popupImage");
+const popupTitle = document.getElementById("popupTitle");
+const popupText = document.getElementById("popupText");
+const continueButton = document.getElementById("continue");
+const counter = document.getElementById("counter");
 
-    stars.forEach(function(star) {
-      star.dataset.collected = "false";
-    });
 
-    /* STAR CONTENT */
+/* =========================
+   PLAYER
+========================= */
 
-    const starContent = {
+let playerX = 900;
+let playerY = 600;
+
+let targetX = 900;
+let targetY = 600;
+
+const speed = 5;
+
+
+/* =========================
+   CAMERA
+========================= */
+
+let cameraX = 0;
+let cameraY = 0;
+
+
+/* =========================
+   STARS
+========================= */
+
+let collectedStars = 0;
+
+stars.forEach(function(star) {
+  star.dataset.collected = "false";
+});
+
+
+/* =========================
+   COMPLIMENTS
+========================= */
+
 const starContent = {
 
   1: {
@@ -456,216 +460,179 @@ const starContent = {
 
 };
 
-    /* TAP TO MOVE */
 
-    game.addEventListener("pointerdown", function(event) {
+/* =========================
+   TAP TO MOVE
+========================= */
 
-      if (popup.style.display === "flex") {
-        return;
-      }
+game.addEventListener("pointerdown", function(event) {
 
-      targetX =
-        event.clientX - cameraX;
+  if (popup.style.display === "flex") {
+    return;
+  }
 
-      targetY =
-        event.clientY - cameraY;
+  targetX = event.clientX - cameraX;
+  targetY = event.clientY - cameraY;
 
-    });
+});
 
-    /* DISTANCE */
 
-    function distanceBetween(
-      x1,
-      y1,
-      x2,
-      y2
-    ) {
+/* =========================
+   DISTANCE
+========================= */
 
-      const dx = x2 - x1;
-      const dy = y2 - y1;
+function distanceBetween(x1, y1, x2, y2) {
 
-      return Math.sqrt(
-        dx * dx + dy * dy
-      );
+  const dx = x2 - x1;
+  const dy = y2 - y1;
 
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+
+/* =========================
+   CHECK STARS
+========================= */
+
+function checkStars() {
+
+  stars.forEach(function(star) {
+
+    if (star.dataset.collected === "true") {
+      return;
     }
 
-    /* CHECK STARS */
+    const starX = parseFloat(star.style.left);
+    const starY = parseFloat(star.style.top);
 
-    function checkStars() {
-
-      stars.forEach(function(star) {
-
-        if (
-          star.dataset.collected === "true"
-        ) {
-          return;
-        }
-
-        const starX =
-          parseFloat(star.style.left);
-
-        const starY =
-          parseFloat(star.style.top);
-
-        const distance =
-          distanceBetween(
-            playerX,
-            playerY,
-            starX,
-            starY
-          );
-
-        if (distance < 70) {
-
-          const id =
-            star.dataset.id;
-
-          const content =
-            starContent[id];
-
-          star.dataset.collected =
-            "true";
-
-          star.style.display =
-            "none";
-
-          collectedStars++;
-
-          counter.textContent =
-            `⭐ ${collectedStars} / 8`;
-
-          popupImage.src =
-            content.image;
-
-          popupTitle.textContent =
-            content.title;
-
-          popupText.textContent =
-            content.text;
-
-          popup.style.display =
-            "flex";
-
-        }
-
-      });
-
-    }
-
-    /* CONTINUE */
-
-    continueButton.addEventListener(
-      "click",
-      function() {
-
-        popup.style.display = "none";
-
-      }
+    const distance = distanceBetween(
+      playerX,
+      playerY,
+      starX,
+      starY
     );
 
-    /* GAME LOOP */
+    if (distance < 75) {
 
-    function update() {
+      const id = star.dataset.id;
+      const content = starContent[id];
 
-      const dx =
-        targetX - playerX;
+      star.dataset.collected = "true";
+      star.style.display = "none";
 
-      const dy =
-        targetY - playerY;
+      collectedStars++;
 
-      const distance =
-        Math.sqrt(
-          dx * dx +
-          dy * dy
-        );
+      counter.textContent =
+        "⭐ " + collectedStars + " / 8";
 
-      if (distance > 3) {
+      popupImage.src = content.image;
+      popupTitle.textContent = content.title;
+      popupText.textContent = content.text;
 
-        playerX +=
-          (dx / distance) * speed;
-
-        playerY +=
-          (dy / distance) * speed;
-
-      }
-
-      /* WORLD LIMITS */
-
-      playerX =
-        Math.max(
-          30,
-          Math.min(
-            1770,
-            playerX
-          )
-        );
-
-      playerY =
-        Math.max(
-          30,
-          Math.min(
-            1170,
-            playerY
-          )
-        );
-
-      /* PLAYER */
-
-      player.style.left =
-        playerX + "px";
-
-      player.style.top =
-        playerY + "px";
-
-      /* CAMERA */
-
-      const screenWidth =
-        window.innerWidth;
-
-      const screenHeight =
-        window.innerHeight;
-
-      cameraX =
-        screenWidth / 2 -
-        playerX;
-
-      cameraY =
-        screenHeight / 2 -
-        playerY;
-
-      cameraX =
-        Math.min(
-          0,
-          Math.max(
-            screenWidth - 1800,
-            cameraX
-          )
-        );
-
-      cameraY =
-        Math.min(
-          0,
-          Math.max(
-            screenHeight - 1200,
-            cameraY
-          )
-        );
-
-      world.style.transform =
-        `translate(${cameraX}px, ${cameraY}px)`;
-
-      /* STARS */
-
-      checkStars();
-
-      requestAnimationFrame(update);
-
+      popup.style.display = "flex";
     }
 
-    update();
+  });
 
-  </script>
+}
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+continueButton.addEventListener("click", function() {
+
+  popup.style.display = "none";
+
+});
+
+
+/* =========================
+   GAME LOOP
+========================= */
+
+function update() {
+
+  const dx = targetX - playerX;
+  const dy = targetY - playerY;
+
+  const distance = Math.sqrt(
+    dx * dx + dy * dy
+  );
+
+  if (distance > 3) {
+
+    playerX += (dx / distance) * speed;
+    playerY += (dy / distance) * speed;
+
+  }
+
+
+  /* WORLD LIMITS */
+
+  playerX = Math.max(
+    30,
+    Math.min(1770, playerX)
+  );
+
+  playerY = Math.max(
+    30,
+    Math.min(1170, playerY)
+  );
+
+
+  /* PLAYER */
+
+  player.style.left = playerX + "px";
+  player.style.top = playerY + "px";
+
+
+  /* CAMERA */
+
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  cameraX =
+    screenWidth / 2 - playerX;
+
+  cameraY =
+    screenHeight / 2 - playerY;
+
+  cameraX = Math.min(
+    0,
+    Math.max(
+      screenWidth - 1800,
+      cameraX
+    )
+  );
+
+  cameraY = Math.min(
+    0,
+    Math.max(
+      screenHeight - 1200,
+      cameraY
+    )
+  );
+
+
+  world.style.transform =
+    "translate(" + cameraX + "px, " + cameraY + "px)";
+
+
+  checkStars();
+
+  requestAnimationFrame(update);
+}
+
+
+/* =========================
+   START GAME
+========================= */
+
+update();
+
+</script>
 
 </body>
 </html>
