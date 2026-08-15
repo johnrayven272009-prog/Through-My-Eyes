@@ -43,9 +43,7 @@
         #79a96b;
     }
 
-    /* =========================
-       PATHS
-    ========================== */
+    /* PATHS */
 
     .path {
       position: absolute;
@@ -70,9 +68,7 @@
       transform: rotate(-8deg);
     }
 
-    /* =========================
-       TREES
-    ========================== */
+    /* TREES */
 
     .tree {
       position: absolute;
@@ -82,9 +78,7 @@
       user-select: none;
     }
 
-    /* =========================
-       PLAYER
-    ========================== */
+    /* PLAYER */
 
     #player {
       position: absolute;
@@ -146,9 +140,7 @@
       right: 9px;
     }
 
-    /* =========================
-       STARS
-    ========================== */
+    /* STARS */
 
     .star {
       position: absolute;
@@ -161,8 +153,6 @@
       filter: drop-shadow(0 0 8px rgba(255,255,255,.7));
       user-select: none;
     }
-
-    /* Locked stars */
 
     .star.locked {
       filter: grayscale(1) brightness(.55);
@@ -190,9 +180,7 @@
       }
     }
 
-    /* =========================
-       TOP UI
-    ========================== */
+    /* TOP UI */
 
     #instructions {
       position: fixed;
@@ -220,16 +208,45 @@
 
       padding: 9px 13px;
       border-radius: 20px;
-
       background: rgba(20,30,22,.72);
       color: white;
 
       font-size: 14px;
     }
 
-    /* =========================
-       POPUP
-    ========================== */
+    /* LOCK MESSAGE */
+
+    #lockMessage {
+      position: fixed;
+      left: 50%;
+      bottom: 35px;
+      transform: translateX(-50%) translateY(20px);
+
+      z-index: 150;
+
+      padding: 12px 18px;
+      border-radius: 20px;
+
+      background: rgba(20,30,22,.9);
+      color: white;
+
+      font-size: 14px;
+      text-align: center;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition:
+        opacity .25s ease,
+        transform .25s ease;
+    }
+
+    #lockMessage.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* POPUP */
 
     #popup {
       position: fixed;
@@ -304,40 +321,6 @@
       font-size: 15px;
       cursor: pointer;
     }
-
-    /* =========================
-       LOCK MESSAGE
-    ========================== */
-
-    #lockMessage {
-      position: fixed;
-      left: 50%;
-      bottom: 35px;
-      transform: translateX(-50%) translateY(20px);
-
-      z-index: 150;
-
-      padding: 12px 18px;
-      border-radius: 20px;
-
-      background: rgba(20,30,22,.9);
-      color: white;
-
-      font-size: 14px;
-      text-align: center;
-
-      opacity: 0;
-      pointer-events: none;
-
-      transition:
-        opacity .25s ease,
-        transform .25s ease;
-    }
-
-    #lockMessage.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
   </style>
 </head>
 
@@ -355,17 +338,12 @@
 
     <div id="world">
 
-      <!-- =========================
-           PATHS
-      ========================== -->
+      <!-- PATHS -->
 
       <div class="path one"></div>
       <div class="path two"></div>
 
-
-      <!-- =========================
-           TREES
-      ========================== -->
+      <!-- TREES -->
 
       <div class="tree" style="left:120px; top:120px;">🌳</div>
       <div class="tree" style="left:300px; top:250px;">🌲</div>
@@ -382,103 +360,43 @@
       <div class="tree" style="left:1450px; top:800px;">🌲</div>
       <div class="tree" style="left:1650px; top:1000px;">🌳</div>
 
+      <!-- 8 STARS -->
 
-      <!-- =========================
-           8 STARS
-           
-           ONLY STAR 1 STARTS UNLOCKED
-      ========================== -->
+      <div class="star" data-id="1" style="left:250px; top:400px;">⭐</div>
+      <div class="star locked" data-id="2" style="left:500px; top:750px;">🔒</div>
+      <div class="star locked" data-id="3" style="left:750px; top:250px;">🔒</div>
+      <div class="star locked" data-id="4" style="left:1050px; top:850px;">🔒</div>
+      <div class="star locked" data-id="5" style="left:1250px; top:400px;">🔒</div>
+      <div class="star locked" data-id="6" style="left:1450px; top:700px;">🔒</div>
+      <div class="star locked" data-id="7" style="left:1550px; top:350px;">🔒</div>
+      <div class="star locked" data-id="8" style="left:1600px; top:900px;">🔒</div>
 
-      <div
-        class="star"
-        data-id="1"
-        style="left:250px; top:400px;"
-      >⭐</div>
-
-      <div
-        class="star locked"
-        data-id="2"
-        style="left:500px; top:750px;"
-      >🔒</div>
-
-      <div
-        class="star locked"
-        data-id="3"
-        style="left:750px; top:250px;"
-      >🔒</div>
-
-      <div
-        class="star locked"
-        data-id="4"
-        style="left:1050px; top:850px;"
-      >🔒</div>
-
-      <div
-        class="star locked"
-        data-id="5"
-        style="left:1250px; top:400px;"
-      >🔒</div>
-
-      <div
-        class="star locked"
-        data-id="6"
-        style="left:1450px; top:700px;"
-      >🔒</div>
-
-      <div
-        class="star locked"
-        data-id="7"
-        style="left:1550px; top:350px;"
-      >🔒</div>
-
-      <div
-        class="star locked"
-        data-id="8"
-        style="left:1600px; top:900px;"
-      >🔒</div>
-
-
-      <!-- =========================
-           PLAYER
-      ========================== -->
+      <!-- PLAYER -->
 
       <div id="player">
-
         <div class="hair"></div>
         <div class="head"></div>
         <div class="body"></div>
-
         <div class="leg left"></div>
         <div class="leg right"></div>
-
       </div>
 
     </div>
   </div>
 
-
-  <!-- =========================
-       LOCK MESSAGE
-  ========================== -->
+  <!-- LOCK MESSAGE -->
 
   <div id="lockMessage">
     🔒 You need to find the previous star first.
   </div>
 
-
-  <!-- =========================
-       POPUP
-  ========================== -->
+  <!-- POPUP -->
 
   <div id="popup">
 
     <div id="popupBox">
 
-      <img
-        id="popupImage"
-        src=""
-        alt="Memory"
-      >
+      <img id="popupImage" src="" alt="Memory">
 
       <h2 id="popupTitle">
         ⭐ A little something
@@ -496,12 +414,7 @@
 
   </div>
 
-
   <script>
-
-    /* =========================
-       ELEMENTS
-    ========================== */
 
     const game =
       document.getElementById("game");
@@ -537,9 +450,7 @@
       document.getElementById("lockMessage");
 
 
-    /* =========================
-       PLAYER
-    ========================== */
+    /* PLAYER */
 
     let playerX = 900;
     let playerY = 600;
@@ -550,122 +461,85 @@
     const speed = 4;
 
 
-    /* =========================
-       CAMERA
-    ========================== */
+    /* CAMERA */
 
     let cameraX = 0;
     let cameraY = 0;
 
 
-    /* =========================
-       STAR PROGRESSION
-       
-       0 = only star 1 unlocked
-       1 = star 2 unlocked
-       2 = star 3 unlocked
-       etc.
-    ========================== */
+    /* STAR PROGRESSION */
 
     let collectedStars = 0;
 
+    // Star 1 is the first star available.
     let unlockedStar = 1;
 
 
-    /* =========================
-       STAR CONTENT
-    ========================== */
+    /* STAR STATE */
+
+    stars.forEach(function(star) {
+
+      star.dataset.collected = "false";
+
+    });
+
+
+    /* STAR CONTENT */
 
     const starContent = {
 
       1: {
         image: "photos/photo1.jpg",
         title: "⭐ Just You",
-        text:
-          "Jil, I don't think you realize how much I appreciate you just for being you. You don't have to do anything special or prove anything to me para maging someone worth appreciating."
+        text: "Jil, I don't think you realize how much I appreciate you just for being you. You don't have to do anything special or prove anything to me para maging someone worth appreciating."
       },
 
       2: {
         image: "photos/photo2.jpg",
         title: "⭐ The Little Things",
-        text:
-          "There's just something about you na I can't really explain. Kahit yung mga normal na bagay about you, somehow they mean more to me than you probably realize."
+        text: "There's just something about you na I can't really explain. Kahit yung mga normal na bagay about you, somehow they mean more to me than you probably realize."
       },
 
       3: {
         image: "photos/photo3.jpg",
         title: "⭐ You're Enough",
-        text:
-          "I know you have things about yourself na you're insecure about, pero sana alam mo na those things don't define you. Hindi naman kailangan maging perfect ka para maging someone na worth appreciating."
+        text: "I know you have things about yourself na you're insecure about, pero sana alam mo na those things don't define you. Hindi naman kailangan maging perfect ka para maging someone na worth appreciating."
       },
 
       4: {
         image: "photos/photo4.jpg",
         title: "⭐ How I See You",
-        text:
-          "Sometimes I wish you could see yourself the way other people see you, especially the people who genuinely appreciate you. Kasi baka mas makita mo rin yung good things about yourself na lagi mong nami-miss."
+        text: "Sometimes I wish you could see yourself the way other people see you, especially the people who genuinely appreciate you. Kasi baka mas makita mo rin yung good things about yourself na lagi mong nami-miss."
       },
 
       5: {
         image: "photos/photo5.jpg",
         title: "⭐ The Weird You",
-        text:
-          "I appreciate you as you are, kahit yung random side mo, yung pagiging weird mo HAHAHA. Pero mas weird ata ako kaya wala rin akong masabi 😭. I actually like those little things about you kasi yun yung nagpapaka-you sayo."
+        text: "I appreciate you as you are, kahit yung random side mo, yung pagiging weird mo HAHAHA. Pero mas weird ata ako kaya wala rin akong masabi 😭. I actually like those little things about you kasi yun yung nagpapaka-you sayo."
       },
 
       6: {
         image: "photos/photo6.jpg",
         title: "⭐ Be Yourself",
-        text:
-          "You don't have to change yourself just because you think there's something wrong with you. There's nothing wrong with being yourself, and I hope someday you can be as kind to yourself as you are to other people."
+        text: "You don't have to change yourself just because you think there's something wrong with you. There's nothing wrong with being yourself, and I hope someday you can be as kind to yourself as you are to other people."
       },
 
       7: {
         image: "photos/photo7.jpg",
         title: "⭐ Almost There",
-        text:
-          "And we're almost at the end HAHAHA. But honestly, I could probably keep going because eight stars isn't nearly enough to put every reason why I appreciate you."
+        text: "And we're almost at the end HAHAHA. But honestly, I could probably keep going because eight stars isn't nearly enough to put every reason why I appreciate you."
       },
 
       8: {
         image: "photos/photo8.jpg",
         title: "⭐ Through My Eyes",
-        text:
-          "If you made it this far, just know na every picture here was another reason I appreciate you. I just wish you could see yourself through my eyes para ma-realize mo what I see in you. I wish you could see the stars the way I see them in you, even sa mga bagay na tingin mo ordinary lang. Sana one day makita mo rin sa sarili mo yung mga bagay na matagal ko nang nakikita sayo."
+        text: "If you made it this far, just know na every picture here was another reason I appreciate you. I just wish you could see yourself through my eyes para ma-realize mo what I see in you. I wish you could see the stars the way I see them in you, even sa mga bagay na tingin mo ordinary lang. Sana one day makita mo rin sa sarili mo yung mga bagay na matagal ko nang nakikita sayo."
       }
 
     };
 
 
-    /* =========================
-       INITIALIZE STARS
-    ========================== */
-
-    stars.forEach(function(star) {
-
-      const id =
-        Number(star.dataset.id);
-
-      star.dataset.collected = "false";
-
-      if (id === 1) {
-
-        star.classList.remove("locked");
-        star.textContent = "⭐";
-
-      } else {
-
-        star.classList.add("locked");
-        star.textContent = "🔒";
-
-      }
-
-    });
-
-
-    /* =========================
-       UPDATE STAR APPEARANCE
-    ========================== */
+    /* UPDATE STAR LOCKS */
 
     function updateStarLocks() {
 
@@ -674,8 +548,6 @@
         const id =
           Number(star.dataset.id);
 
-
-        /* Already collected */
 
         if (
           star.dataset.collected === "true"
@@ -688,23 +560,14 @@
         }
 
 
-        /* Unlocked */
-
         if (id <= unlockedStar) {
 
           star.classList.remove("locked");
-
           star.textContent = "⭐";
 
-        }
-
-
-        /* Locked */
-
-        else {
+        } else {
 
           star.classList.add("locked");
-
           star.textContent = "🔒";
 
         }
@@ -714,28 +577,54 @@
     }
 
 
-    /* =========================
-       COUNTER
-    ========================== */
+    /* TAP TO MOVE */
 
-    function updateCounter() {
+    game.addEventListener(
+      "pointerdown",
+      function(event) {
 
-      counter.textContent =
-        `⭐ ${collectedStars} / 8`;
+        if (popup.style.display === "flex") {
+          return;
+        }
+
+        targetX =
+          event.clientX - cameraX;
+
+        targetY =
+          event.clientY - cameraY;
+
+      }
+    );
+
+
+    /* DISTANCE */
+
+    function distanceBetween(
+      x1,
+      y1,
+      x2,
+      y2
+    ) {
+
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+
+      return Math.sqrt(
+        dx * dx +
+        dy * dy
+      );
 
     }
 
 
-    /* =========================
-       LOCK MESSAGE
-    ========================== */
+    /* LOCK MESSAGE */
 
     let lockTimeout;
 
     function showLockMessage(starNumber) {
 
       lockMessage.textContent =
-        `🔒 Find Star ${starNumber - 1} first to unlock this star.`;
+        `🔒 You need to find Star ${starNumber - 1} first.`;
 
       lockMessage.classList.add("show");
 
@@ -751,70 +640,18 @@
     }
 
 
-    /* =========================
-       TAP TO MOVE
-    ========================== */
-
-    game.addEventListener(
-      "pointerdown",
-      function(event) {
-
-        if (
-          popup.style.display === "flex"
-        ) {
-          return;
-        }
-
-
-        targetX =
-          event.clientX - cameraX;
-
-        targetY =
-          event.clientY - cameraY;
-
-      }
-    );
-
-
-    /* =========================
-       DISTANCE
-    ========================== */
-
-    function distanceBetween(
-      x1,
-      y1,
-      x2,
-      y2
-    ) {
-
-      const dx =
-        x2 - x1;
-
-      const dy =
-        y2 - y1;
-
-      return Math.sqrt(
-        dx * dx +
-        dy * dy
-      );
-
-    }
-
-
-    /* =========================
-       CHECK STARS
-    ========================== */
+    /* CHECK STARS */
 
     function checkStars() {
 
       stars.forEach(function(star) {
 
-        /* Ignore collected stars */
-
         if (
           star.dataset.collected === "true"
         ) {
+
           return;
+
         }
 
 
@@ -841,9 +678,7 @@
         if (distance < 70) {
 
 
-          /* =========================
-             LOCKED STAR
-          ========================== */
+          /* LOCKED STAR */
 
           if (id > unlockedStar) {
 
@@ -854,9 +689,7 @@
           }
 
 
-          /* =========================
-             UNLOCKED STAR
-          ========================== */
+          /* UNLOCKED STAR */
 
           const content =
             starContent[id];
@@ -872,7 +705,17 @@
           collectedStars++;
 
 
-          /* Unlock the NEXT star */
+          /*
+            THIS IS THE IMPORTANT PART:
+
+            Once Star 1 is collected,
+            Star 2 unlocks.
+
+            Once Star 2 is collected,
+            Star 3 unlocks.
+
+            And so on.
+          */
 
           if (id === unlockedStar) {
 
@@ -881,14 +724,14 @@
           }
 
 
-          updateCounter();
+          counter.textContent =
+            `⭐ ${collectedStars} / 8`;
+
 
           updateStarLocks();
 
 
-          /* =========================
-             SHOW CONTENT
-          ========================== */
+          /* SHOW MESSAGE */
 
           popupImage.src =
             content.image;
@@ -909,9 +752,7 @@
     }
 
 
-    /* =========================
-       CONTINUE
-    ========================== */
+    /* CONTINUE */
 
     continueButton.addEventListener(
       "click",
@@ -924,16 +765,9 @@
     );
 
 
-    /* =========================
-       GAME LOOP
-    ========================== */
+    /* GAME LOOP */
 
     function update() {
-
-
-      /* =========================
-         MOVEMENT
-      ========================== */
 
       const dx =
         targetX - playerX;
@@ -959,9 +793,7 @@
       }
 
 
-      /* =========================
-         WORLD LIMITS
-      ========================== */
+      /* WORLD LIMITS */
 
       playerX =
         Math.max(
@@ -982,9 +814,7 @@
         );
 
 
-      /* =========================
-         PLAYER
-      ========================== */
+      /* PLAYER */
 
       player.style.left =
         playerX + "px";
@@ -993,9 +823,7 @@
         playerY + "px";
 
 
-      /* =========================
-         CAMERA
-      ========================== */
+      /* CAMERA */
 
       const screenWidth =
         window.innerWidth;
@@ -1037,9 +865,7 @@
         `translate(${cameraX}px, ${cameraY}px)`;
 
 
-      /* =========================
-         CHECK STARS
-      ========================== */
+      /* STARS */
 
       checkStars();
 
@@ -1049,9 +875,7 @@
     }
 
 
-    /* =========================
-       START GAME
-    ========================== */
+    /* START */
 
     update();
 
