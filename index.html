@@ -22,7 +22,6 @@
       touch-action: none;
     }
 
-    /* GAME VIEW */
     #game {
       position: fixed;
       inset: 0;
@@ -30,26 +29,31 @@
       background: #79a96b;
     }
 
-    /* THE WORLD */
     #world {
       position: absolute;
       width: 1800px;
       height: 1200px;
-      left: 0;
-      top: 0;
       background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0 3px, transparent 4px),
-        radial-gradient(circle at 70% 65%, rgba(255,255,255,.06) 0 3px, transparent 4px),
+        radial-gradient(
+          circle at 20% 30%,
+          rgba(255,255,255,.08) 0 3px,
+          transparent 4px
+        ),
+        radial-gradient(
+          circle at 70% 65%,
+          rgba(255,255,255,.06) 0 3px,
+          transparent 4px
+        ),
         #79a96b;
-      transition: transform 0.05s linear;
     }
 
-    /* LITTLE PATHS */
+    /* PATHS */
+
     .path {
       position: absolute;
       background: #c8ad7b;
       border-radius: 100px;
-      opacity: 0.9;
+      opacity: .9;
     }
 
     .path.one {
@@ -69,6 +73,7 @@
     }
 
     /* TREES */
+
     .tree {
       position: absolute;
       width: 70px;
@@ -78,72 +83,70 @@
     }
 
     /* PLAYER */
+
     #player {
-  position: absolute;
-  width: 42px;
-  height: 58px;
-  left: 900px;
-  top: 600px;
-  z-index: 20;
-  transform: translate(-50%, -50%);
-  user-select: none;
-}
+      position: absolute;
+      width: 42px;
+      height: 58px;
+      left: 900px;
+      top: 600px;
+      z-index: 20;
+      transform: translate(-50%, -50%);
+      user-select: none;
+    }
 
-/* HEAD */
-#player .head {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  left: 7px;
-  top: 4px;
-  background: #f2c6a0;
-  border-radius: 50%;
-  z-index: 3;
-}
+    #player .head {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      left: 7px;
+      top: 4px;
+      background: #f2c6a0;
+      border-radius: 50%;
+      z-index: 3;
+    }
 
-/* HAIR */
-#player .hair {
-  position: absolute;
-  width: 31px;
-  height: 18px;
-  left: 5px;
-  top: 1px;
-  background: #2b211d;
-  border-radius: 18px 18px 8px 8px;
-  z-index: 4;
-}
+    #player .hair {
+      position: absolute;
+      width: 31px;
+      height: 18px;
+      left: 5px;
+      top: 1px;
+      background: #2b211d;
+      border-radius: 18px 18px 8px 8px;
+      z-index: 4;
+    }
 
-/* BODY */
-#player .body {
-  position: absolute;
-  width: 30px;
-  height: 24px;
-  left: 6px;
-  top: 30px;
-  background: #3d5366;
-  border-radius: 7px 7px 4px 4px;
-}
+    #player .body {
+      position: absolute;
+      width: 30px;
+      height: 24px;
+      left: 6px;
+      top: 30px;
+      background: #3d5366;
+      border-radius: 7px 7px 4px 4px;
+    }
 
-/* LEGS */
-#player .leg {
-  position: absolute;
-  width: 9px;
-  height: 15px;
-  top: 50px;
-  background: #20242a;
-  border-radius: 4px;
-  z-index: 1;
-}
+    #player .leg {
+      position: absolute;
+      width: 9px;
+      height: 15px;
+      top: 50px;
+      background: #20242a;
+      border-radius: 4px;
+      z-index: 1;
+    }
 
-#player .leg.left {
-  left: 9px;
-}
+    #player .leg.left {
+      left: 9px;
+    }
 
-#player .leg.right {
-  right: 9px;
-}
+    #player .leg.right {
+      right: 9px;
+    }
 
-    /* STAR */
+    /* STARS */
+
     .star {
       position: absolute;
       width: 55px;
@@ -165,7 +168,8 @@
       }
     }
 
-    /* MESSAGE AT TOP */
+    /* TOP UI */
+
     #instructions {
       position: fixed;
       top: 18px;
@@ -176,7 +180,7 @@
       padding: 10px 17px;
       border-radius: 25px;
 
-      background: rgba(20, 30, 22, .72);
+      background: rgba(20,30,22,.72);
       color: white;
 
       font-size: 14px;
@@ -186,7 +190,6 @@
       white-space: nowrap;
     }
 
-    /* STAR COUNTER */
     #counter {
       position: fixed;
       top: 18px;
@@ -196,13 +199,14 @@
       padding: 9px 13px;
       border-radius: 20px;
 
-      background: rgba(20, 30, 22, .72);
+      background: rgba(20,30,22,.72);
       color: white;
 
       font-size: 14px;
     }
 
     /* POPUP */
+
     #popup {
       position: fixed;
       inset: 0;
@@ -263,16 +267,18 @@
     </div>
 
     <div id="counter">
-      ⭐ 0 / 1
+      ⭐ 0 / 8
     </div>
 
     <div id="world">
 
       <!-- PATHS -->
+
       <div class="path one"></div>
       <div class="path two"></div>
 
       <!-- TREES -->
+
       <div class="tree" style="left:120px; top:120px;">🌳</div>
       <div class="tree" style="left:300px; top:250px;">🌲</div>
       <div class="tree" style="left:500px; top:100px;">🌳</div>
@@ -288,74 +294,122 @@
       <div class="tree" style="left:1450px; top:800px;">🌲</div>
       <div class="tree" style="left:1650px; top:1000px;">🌳</div>
 
-      <!-- FIRST STAR -->
-      <div class="star" id="star1" style="left:1200px; top:600px;">
-        ⭐
-      </div>
+      <!-- 8 STARS -->
+
+      <div class="star" data-id="1" style="left:250px; top:400px;">⭐</div>
+
+      <div class="star" data-id="2" style="left:500px; top:750px;">⭐</div>
+
+      <div class="star" data-id="3" style="left:750px; top:250px;">⭐</div>
+
+      <div class="star" data-id="4" style="left:1050px; top:850px;">⭐</div>
+
+      <div class="star" data-id="5" style="left:1250px; top:400px;">⭐</div>
+
+      <div class="star" data-id="6" style="left:1450px; top:700px;">⭐</div>
+
+      <div class="star" data-id="7" style="left:1550px; top:350px;">⭐</div>
+
+      <div class="star" data-id="8" style="left:1600px; top:900px;">⭐</div>
 
       <!-- PLAYER -->
+
       <div id="player">
-  <div class="hair"></div>
-  <div class="head"></div>
-  <div class="body"></div>
-  <div class="leg left"></div>
-  <div class="leg right"></div>
-</div>
+
+        <div class="hair"></div>
+
+        <div class="head"></div>
+
+        <div class="body"></div>
+
+        <div class="leg left"></div>
+
+        <div class="leg right"></div>
+
+      </div>
 
     </div>
   </div>
 
   <!-- POPUP -->
+
   <div id="popup">
+
     <div id="popupBox">
+
       <h2>⭐ You found something</h2>
 
-      <p>
+      <p id="popupText">
         This is where we'll eventually put one of Jil's pictures
         and one of your compliments.
       </p>
 
-      <button id="continue">Continue</button>
+      <button id="continue">
+        Continue
+      </button>
+
     </div>
+
   </div>
 
   <script>
 
+    const game = document.getElementById("game");
     const world = document.getElementById("world");
     const player = document.getElementById("player");
-    const star = document.getElementById("star1");
+
+    const stars = document.querySelectorAll(".star");
+
     const popup = document.getElementById("popup");
+    const popupText = document.getElementById("popupText");
     const continueButton = document.getElementById("continue");
+
     const counter = document.getElementById("counter");
 
     /* PLAYER POSITION */
+
     let playerX = 900;
     let playerY = 600;
 
-    /* WHERE PLAYER IS GOING */
+    /* MOVEMENT TARGET */
+
     let targetX = playerX;
     let targetY = playerY;
 
-    /* MOVEMENT SPEED */
     const speed = 4;
 
     /* CAMERA */
+
     let cameraX = 0;
     let cameraY = 0;
 
-    let starCollected = false;
+    /* STAR COUNT */
+
+    let collectedStars = 0;
+
+    /* MARK ALL STARS AS NOT COLLECTED */
+
+    stars.forEach(function(star) {
+
+      star.dataset.collected = "false";
+
+    });
 
     /* TAP TO MOVE */
-    document.getElementById("game").addEventListener("pointerdown", function(event) {
 
-      if (popup.style.display === "flex") return;
+    game.addEventListener("pointerdown", function(event) {
+
+      if (popup.style.display === "flex") {
+        return;
+      }
 
       targetX = event.clientX - cameraX;
       targetY = event.clientY - cameraY;
 
     });
 
-    /* CHECK DISTANCE */
+    /* DISTANCE FUNCTION */
+
     function distanceBetween(x1, y1, x2, y2) {
 
       const dx = x2 - x1;
@@ -365,72 +419,46 @@
 
     }
 
-    /* GAME LOOP */
-    function update() {
+    /* CHECK FOR STARS */
 
-      const dx = targetX - playerX;
-      const dy = targetY - playerY;
+    function checkStars() {
 
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      stars.forEach(function(star) {
 
-      if (distance > 3) {
+        if (star.dataset.collected === "true") {
+          return;
+        }
 
-        playerX += (dx / distance) * speed;
-        playerY += (dy / distance) * speed;
-
-      }
-
-      /* KEEP PLAYER INSIDE WORLD */
-
-      playerX = Math.max(30, Math.min(1770, playerX));
-      playerY = Math.max(30, Math.min(1170, playerY));
-
-      /* MOVE PLAYER */
-
-      player.style.left = playerX + "px";
-      player.style.top = playerY + "px";
-
-      /* CAMERA FOLLOWS PLAYER */
-
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-
-      cameraX = screenWidth / 2 - playerX;
-      cameraY = screenHeight / 2 - playerY;
-
-      /* CAMERA LIMITS */
-
-      cameraX = Math.min(0, Math.max(screenWidth - 1800, cameraX));
-      cameraY = Math.min(0, Math.max(screenHeight - 1200, cameraY));
-
-      world.style.transform =
-        `translate(${cameraX}px, ${cameraY}px)`;
-
-      /* CHECK STAR */
-
-      if (!starCollected) {
-
-        const starX = 1200;
-        const starY = 600;
+        const starX = parseFloat(star.style.left);
+        const starY = parseFloat(star.style.top);
 
         const distanceToStar =
-          distanceBetween(playerX, playerY, starX, starY);
+          distanceBetween(
+            playerX,
+            playerY,
+            starX,
+            starY
+          );
 
         if (distanceToStar < 70) {
 
-          starCollected = true;
+          star.dataset.collected = "true";
 
           star.style.display = "none";
 
-          counter.textContent = "⭐ 1 / 1";
+          collectedStars++;
+
+          counter.textContent =
+            `⭐ ${collectedStars} / 8`;
+
+          popupText.textContent =
+            `You found star ${collectedStars}! This is where we'll put Jil's picture and compliment.`;
 
           popup.style.display = "flex";
 
         }
 
-      }
-
-      requestAnimationFrame(update);
+      });
 
     }
 
@@ -441,6 +469,97 @@
       popup.style.display = "none";
 
     });
+
+    /* GAME LOOP */
+
+    function update() {
+
+      const dx = targetX - playerX;
+      const dy = targetY - playerY;
+
+      const distance =
+        Math.sqrt(dx * dx + dy * dy);
+
+      if (distance > 3) {
+
+        playerX +=
+          (dx / distance) * speed;
+
+        playerY +=
+          (dy / distance) * speed;
+
+      }
+
+      /* WORLD BOUNDARIES */
+
+      playerX =
+        Math.max(
+          30,
+          Math.min(1770, playerX)
+        );
+
+      playerY =
+        Math.max(
+          30,
+          Math.min(1170, playerY)
+        );
+
+      /* PLAYER POSITION */
+
+      player.style.left =
+        playerX + "px";
+
+      player.style.top =
+        playerY + "px";
+
+      /* CAMERA */
+
+      const screenWidth =
+        window.innerWidth;
+
+      const screenHeight =
+        window.innerHeight;
+
+      cameraX =
+        screenWidth / 2 - playerX;
+
+      cameraY =
+        screenHeight / 2 - playerY;
+
+      /* CAMERA LIMITS */
+
+      cameraX =
+        Math.min(
+          0,
+          Math.max(
+            screenWidth - 1800,
+            cameraX
+          )
+        );
+
+      cameraY =
+        Math.min(
+          0,
+          Math.max(
+            screenHeight - 1200,
+            cameraY
+          )
+        );
+
+      /* MOVE WORLD */
+
+      world.style.transform =
+        `translate(${cameraX}px, ${cameraY}px)`;
+
+      /* CHECK STARS */
+
+      checkStars();
+
+      requestAnimationFrame(update);
+
+    }
+
+    /* START GAME */
 
     update();
 
