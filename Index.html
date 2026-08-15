@@ -1,1 +1,112 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <title>Through My Eyes</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #111;
+      font-family: Arial, sans-serif;
+      touch-action: none;
+    }
+
+    #game {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #18251c;
+    }
+
+    #player {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #instructions {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 16px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 14px;
+      z-index: 10;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="game">
+
+    <div id="instructions">
+      Tap anywhere to move
+    </div>
+
+    <div id="player"></div>
+
+  </div>
+
+  <script>
+    const game = document.getElementById("game");
+    const player = document.getElementById("player");
+
+    let playerX = window.innerWidth / 2;
+    let playerY = window.innerHeight / 2;
+
+    let targetX = playerX;
+    let targetY = playerY;
+
+    const speed = 5;
+
+    game.addEventListener("pointerdown", function(event) {
+      targetX = event.clientX;
+      targetY = event.clientY;
+    });
+
+    function update() {
+      const dx = targetX - playerX;
+      const dy = targetY - playerY;
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance > 2) {
+        playerX += (dx / distance) * speed;
+        playerY += (dy / distance) * speed;
+      }
+
+      player.style.left = playerX + "px";
+      player.style.top = playerY + "px";
+
+      requestAnimationFrame(update);
+    }
+
+    update();
+  </script>
+
+</body>
+</html>
