@@ -1495,46 +1495,21 @@ function updateCamera() {
 ========================= */
 
 function movePlayer() {
+function movePlayer() {
 
-      if (joystickActive) {
-
-  playerX +=
-    joystickX * speed;
-
-  playerY +=
-    joystickY * speed;
-
-} else {
-            
-  const dx =
-    targetX - playerX;
-
-  const dy =
-    targetY - playerY;
-
-  const distance =
-    Math.sqrt(
-      dx * dx +
-      dy * dy
-    );
-
-
-  if (distance > 2) {
+  if (joystickActive) {
 
     playerX +=
-      (dx / distance) * speed;
+      joystickX * speed;
 
     playerY +=
-  (dy / distance) * speed;
+      joystickY * speed;
 
   }
 
-}  // closes the joystick else
-
-
-/*
-  Keep player inside map.
-*/
+  /*
+    Keep player inside map.
+  */
 
   playerX =
     Math.max(
@@ -1545,7 +1520,6 @@ function movePlayer() {
       )
     );
 
-
   playerY =
     Math.max(
       30,
@@ -1554,13 +1528,6 @@ function movePlayer() {
         playerY
       )
     );
-
-
-  player.style.left =
-    playerX + "px";
-
-  player.style.top =
-    playerY + "px";
 
 }
 
