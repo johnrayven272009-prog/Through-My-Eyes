@@ -537,7 +537,39 @@ body {
       translateY(0px);
   }
 
-      }
+}
+
+/* COLLECTION ANIMATION */
+
+.star.collected {
+  animation:
+    starCollect 0.45s ease-out forwards;
+}
+
+@keyframes starCollect {
+
+  0% {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+    opacity: 1;
+  }
+
+  60% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.5);
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(0);
+    opacity: 0;
+  }
+
+}
 
 /* =========================
    PLAYER
@@ -1680,19 +1712,22 @@ function checkStars() {
           Collect star
         */
 
-        const content =
-          starContent[id];
-
-
         star.dataset.collected =
-          "true";
+  "true";
 
+star.classList.add(
+  "collected"
+);
 
-        star.style.display =
-          "none";
+setTimeout(
+  function() {
+    star.style.display =
+      "none";
+  },
+  450
+);
 
-
-        collectedStars++;
+collectedStars++;
 
 
         /*
