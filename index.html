@@ -1658,24 +1658,20 @@ function checkStars() {
         return;
       }
 
-
       const id =
         Number(
           star.dataset.id
         );
-
 
       const starX =
         parseFloat(
           star.style.left
         );
 
-
       const starY =
         parseFloat(
           star.style.top
         );
-
 
       const distance =
         distanceBetween(
@@ -1684,7 +1680,6 @@ function checkStars() {
           starX,
           starY
         );
-
 
       if (distance < 70) {
 
@@ -1700,23 +1695,31 @@ function checkStars() {
 
         }
 
-
         /*
           Collect star
         */
 
-        popupImage.src =
-  content.image;
+        const content =
+          starContent[id];
 
-popupTitle.textContent =
-  content.title;
+        star.dataset.collected =
+          "true";
 
-popupText.textContent =
-  content.text;
+        star.classList.add(
+          "collected"
+        );
 
-popup.style.display =
-  "flex";
+        setTimeout(
+          function() {
 
+            star.style.display =
+              "none";
+
+          },
+          450
+        );
+
+        collectedStars++;
 
         /*
           Unlock next star.
@@ -1725,32 +1728,30 @@ popup.style.display =
         counter.textContent =
           `⭐ ${collectedStars} / 8`;
 
-
         updateStarLocks();
-
 
         /*
           Open message.
         */
 
-        setTimeout(
-  function() {
+        popupImage.src =
+          content.image;
 
-    popupImage.src =
-      content.image;
+        popupTitle.textContent =
+          content.title;
 
-    popupTitle.textContent =
-      content.title;
+        popupText.textContent =
+          content.text;
 
-    popupText.textContent =
-      content.text;
+        popup.style.display =
+          "flex";
 
-    popup.style.display =
-      "flex";
+        }
 
-  },
-  450
-);
+    }
+  );
+
+}
 
       /* =========================
    EBIT NPC
