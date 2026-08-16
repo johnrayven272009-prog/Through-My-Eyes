@@ -610,7 +610,7 @@ body {
   left: 800px;
   top: 600px;
   z-index: 70;
-  pointer-events: none;
+  pointer-events: auto;
 }
       
 #ebit .npc-head {
@@ -1628,6 +1628,24 @@ function checkStars() {
 
 }
 
+      /* =========================
+   EBIT NPC
+========================= */
+
+const ebit = document.getElementById("ebit");
+
+ebit.addEventListener("click", function() {
+
+  popupTitle.textContent = "Ebit";
+
+  popupText.textContent =
+    "Hi jil, I wanted you to know that I am always thankful for having you as my friend. Thankyou for being there for me and sa mga pagsama saakin, I treasure our friendship and I hope na you always choose happiness:) loveulots!!";
+
+  popupImage.src = "";
+
+  popup.style.display = "flex";
+
+});
 
 /* =========================
    STAR LOCK VISUALS
