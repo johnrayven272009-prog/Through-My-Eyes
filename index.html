@@ -1714,6 +1714,18 @@ ebit.addEventListener(
   "click",
   function() {
 
+    const distance =
+      distanceBetween(
+        playerX,
+        playerY,
+        800,
+        600
+      );
+
+    if (distance >= 100) {
+      return;
+    }
+
     npcMessageOpen = true;
 
     popupTitle.textContent =
@@ -1733,6 +1745,18 @@ ebit.addEventListener(
 aryan.addEventListener(
   "click",
   function() {
+
+        const distance =
+  distanceBetween(
+    playerX,
+    playerY,
+    1400,
+    1000
+  );
+
+if (distance >= 100) {
+  return;
+}
 
     npcMessageOpen = true;
 
