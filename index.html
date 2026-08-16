@@ -1495,7 +1495,6 @@ function updateCamera() {
 ========================= */
 
 function movePlayer() {
-function movePlayer() {
 
   if (joystickActive) {
 
@@ -1798,6 +1797,12 @@ function checkNPCs() {
 
 const joystick =
   document.getElementById("joystick");
+/* =========================
+   JOYSTICK MOVEMENT
+========================= */
+
+const joystick =
+  document.getElementById("joystick");
 
 const joystickKnob =
   document.getElementById("joystickKnob");
@@ -1816,6 +1821,8 @@ joystick.addEventListener(
       event.pointerId
     );
 
+    updateJoystick(event);
+
   }
 );
 
@@ -1827,55 +1834,28 @@ joystick.addEventListener(
       return;
     }
 
-    const rect =
-      joystick.getBoundingClientRect();
-
-    const centerX =
-      rect.left + rect.width / 2;
-
-    const centerY =
-      rect.top + rect.height / 2;
-
-    let dx =
-      event.clientX - centerX;
-
-    let dy =
-      event.clientY - centerY;
-
-    const maxDistance = 35;
-
-    const distance =
-      Math.sqrt(
-        dx * dx +
-        dy * dy
-      );
-
-    if (distance > maxDistance) {
-
-      dx =
-        (dx / distance) *
-        maxDistance;
-
-      dy =
-        (dy / distance) *
-        maxDistance;
-
-    }
-
-    joystickX =
-      dx / maxDistance;
-
-    joystickY =
-      dy / maxDistance;
-
-    joystickKnob.style.transform =
-      `translate(${dx}px, ${dy}px)`;
+    updateJoystick(event);
 
   }
 );
 
 joystick.addEventListener(
   "pointerup",
+  function(event) {
+
+    joystickActive = false;
+
+    joystickX = 0;
+    joystickY = 0;
+
+    joystickKnob.style.transform =
+      "translate(0px, 0px)";
+
+  }
+);
+
+joystick.addEventListener(
+  "pointercancel",
   function() {
 
     joystickActive = false;
@@ -1888,6 +1868,54 @@ joystick.addEventListener(
 
   }
 );
+
+function updateJoystick(event) {
+
+  const rect =
+    joystick.getBoundingClientRect();
+
+  const centerX =
+    rect.left + rect.width / 2;
+
+  const centerY =
+    rect.top + rect.height / 2;
+
+  let dx =
+    event.clientX - centerX;
+
+  let dy =
+    event.clientY - centerY;
+
+  const maxDistance = 35;
+
+  const distance =
+    Math.sqrt(
+      dx * dx +
+      dy * dy
+    );
+
+  if (distance > maxDistance) {
+
+    dx =
+      (dx / distance) *
+      maxDistance;
+
+    dy =
+      (dy / distance) *
+      maxDistance;
+
+  }
+
+  joystickX =
+    dx / maxDistance;
+
+  joystickY =
+    dy / maxDistance;
+
+  joystickKnob.style.transform =
+    `translate(${dx}px, ${dy}px)`;
+
+}
       
 /* =========================
    STAR LOCK VISUALS
