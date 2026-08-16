@@ -660,6 +660,65 @@ body {
 #ebit .npc-right {
   right: 9px;
 }
+
+      #aryan {
+  position: absolute;
+  width: 42px;
+  height: 58px;
+  left: 900px;
+  top: 600px;
+  z-index: 70;
+  pointer-events: auto;
+}
+
+#aryan .npc-head {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 7px;
+  top: 10px;
+  background: #f0c1a0;
+  border-radius: 50%;
+}
+
+#aryan .npc-hair {
+  position: absolute;
+  width: 31px;
+  height: 18px;
+  left: 5px;
+  top: 1px;
+  background: #3a2924;
+  border-radius: 18px 18px 8px 8px;
+  z-index: 3;
+}
+
+#aryan .npc-body {
+  position: absolute;
+  width: 30px;
+  height: 24px;
+  left: 6px;
+  top: 36px;
+  background: #806080;
+  border-radius: 7px;
+}
+
+#aryan .npc-leg {
+  position: absolute;
+  width: 9px;
+  height: 15px;
+  top: 58px;
+  background: #25252d;
+  border-radius: 4px;
+}
+
+#aryan .npc-left {
+  left: 9px;
+}
+
+#aryan .npc-right {
+  right: 9px;
+}
+      
 /* =========================
    UI
 ========================= */
@@ -1124,6 +1183,14 @@ body {
 
 </div>
 </div>
+
+   <div id="aryan">
+  <div class="npc-hair"></div>
+  <div class="npc-head"></div>
+  <div class="npc-body"></div>
+  <div class="npc-leg npc-left"></div>
+  <div class="npc-leg npc-right"></div>
+   </div>   
 
 <!-- LOCK MESSAGE -->
 
@@ -1651,6 +1718,28 @@ ebit.addEventListener(
 
 });
 
+      const aryan =
+  document.getElementById("aryan");
+
+aryan.addEventListener(
+  "click",
+  function() {
+
+    npcMessageOpen = true;
+
+    popupTitle.textContent =
+      "Aryan";
+
+    popupText.textContent =
+      "message for jilch: from ur babe, i love how we randomly get close, because  we also didn’t expect to have u as our friend, being there when we make gala hwhahahaha. iloveyou jil, new tiktok buddy ku";
+
+    popupImage.src = "";
+
+    popup.style.display =
+      "flex";
+
+  }
+);
 /* =========================
    STAR LOCK VISUALS
 ========================= */
