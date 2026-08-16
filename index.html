@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no">
+
 <title>Through My Eyes</title>
 
 <style>
@@ -12,7 +14,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -28,25 +31,24 @@ html, body {
   background: #050817;
 }
 
-/* =========================
-   WORLD
-========================= */
-
 #world {
   position: absolute;
+  left: 0;
+  top: 0;
+
   width: 2000px;
   height: 1400px;
 
   background:
-    radial-gradient(circle at 10% 20%, rgba(255,255,255,.85) 0 1px, transparent 2px),
-    radial-gradient(circle at 18% 8%, rgba(255,255,255,.7) 0 1px, transparent 2px),
-    radial-gradient(circle at 27% 25%, rgba(255,255,255,.8) 0 1px, transparent 2px),
-    radial-gradient(circle at 39% 12%, rgba(255,255,255,.7) 0 1px, transparent 2px),
-    radial-gradient(circle at 52% 22%, rgba(255,255,255,.8) 0 1px, transparent 2px),
-    radial-gradient(circle at 65% 9%, rgba(255,255,255,.8) 0 1px, transparent 2px),
-    radial-gradient(circle at 76% 25%, rgba(255,255,255,.7) 0 1px, transparent 2px),
-    radial-gradient(circle at 88% 12%, rgba(255,255,255,.8) 0 1px, transparent 2px),
-    radial-gradient(circle at 96% 30%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 10% 20%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 18% 8%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 27% 25%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 39% 12%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 52% 22%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 65% 9%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 76% 25%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 12%, white 0 1px, transparent 2px),
+    radial-gradient(circle at 96% 30%, white 0 1px, transparent 2px),
     linear-gradient(
       135deg,
       #050a1c,
@@ -54,7 +56,7 @@ html, body {
       #0d1b32
     );
 
-  overflow: hidden;
+  will-change: transform;
 }
 
 /* =========================
@@ -63,6 +65,7 @@ html, body {
 
 #moon {
   position: absolute;
+
   width: 125px;
   height: 125px;
 
@@ -75,8 +78,6 @@ html, body {
   box-shadow:
     0 0 25px rgba(255,243,196,.65),
     0 0 65px rgba(255,243,196,.25);
-
-  z-index: 2;
 }
 
 /* =========================
@@ -85,12 +86,10 @@ html, body {
 
 .ground-patch {
   position: absolute;
-
   background: rgba(25,62,48,.55);
-
   border-radius: 50%;
-
   filter: blur(.5px);
+  pointer-events: none;
 }
 
 .grass {
@@ -105,16 +104,14 @@ html, body {
   transform: rotate(-8deg);
 
   opacity: .8;
+  pointer-events: none;
 }
 
 .flower {
   position: absolute;
-
   font-size: 16px;
-
-  z-index: 5;
-
   filter: brightness(.7);
+  pointer-events: none;
 }
 
 .rock {
@@ -131,7 +128,7 @@ html, body {
     inset 5px 3px 5px rgba(255,255,255,.08),
     0 5px 8px rgba(0,0,0,.3);
 
-  z-index: 5;
+  pointer-events: none;
 }
 
 .bush {
@@ -141,15 +138,27 @@ html, body {
   height: 42px;
 
   background:
-    radial-gradient(circle at 20% 65%, #173c31 0 25px, transparent 26px),
-    radial-gradient(circle at 50% 45%, #1b4938 0 30px, transparent 31px),
-    radial-gradient(circle at 80% 65%, #15382e 0 25px, transparent 26px);
+    radial-gradient(
+      circle at 20% 65%,
+      #173c31 0 25px,
+      transparent 26px
+    ),
+    radial-gradient(
+      circle at 50% 45%,
+      #1b4938 0 30px,
+      transparent 31px
+    ),
+    radial-gradient(
+      circle at 80% 65%,
+      #15382e 0 25px,
+      transparent 26px
+    );
 
-  z-index: 5;
+  pointer-events: none;
 }
 
 /* =========================
-   PATHS
+   PATH
 ========================= */
 
 .path {
@@ -163,6 +172,8 @@ html, body {
 
   box-shadow:
     inset 0 0 15px rgba(0,0,0,.25);
+
+  pointer-events: none;
 }
 
 .path.one {
@@ -195,12 +206,12 @@ html, body {
   width: 70px;
   height: 105px;
 
-  z-index: 8;
-
   filter:
     brightness(.42)
     saturate(.8)
     drop-shadow(0 7px 7px rgba(0,0,0,.5));
+
+  pointer-events: none;
 }
 
 .tree .top {
@@ -286,7 +297,7 @@ html, body {
     0 0 25px rgba(25,70,100,.35),
     inset 0 0 30px rgba(0,0,0,.4);
 
-  z-index: 4;
+  pointer-events: none;
 }
 
 #pond::before,
@@ -326,7 +337,7 @@ html, body {
   width: 180px;
   height: 150px;
 
-  z-index: 15;
+  pointer-events: none;
 }
 
 .fire-ring {
@@ -364,7 +375,8 @@ html, body {
   filter:
     drop-shadow(0 0 15px rgba(255,140,50,.5));
 
-  animation: fireFlicker .8s infinite alternate;
+  animation:
+    fireFlicker .8s infinite alternate;
 }
 
 @keyframes fireFlicker {
@@ -387,7 +399,7 @@ html, body {
   width: 110px;
   height: 60px;
 
-  z-index: 12;
+  pointer-events: none;
 }
 
 .bench-seat {
@@ -453,9 +465,10 @@ html, body {
     0 0 8px #e7e5a5,
     0 0 15px rgba(231,229,165,.5);
 
-  z-index: 30;
+  pointer-events: none;
 
-  animation: floatFirefly 3s infinite alternate ease-in-out;
+  animation:
+    floatFirefly 3s infinite alternate ease-in-out;
 }
 
 @keyframes floatFirefly {
@@ -494,7 +507,10 @@ html, body {
 }
 
 .star.locked {
-  filter: grayscale(1) brightness(.4);
+  filter:
+    grayscale(1)
+    brightness(.4);
+
   opacity: .65;
 }
 
@@ -513,7 +529,9 @@ html, body {
 
   transform: translate(-50%,-50%);
 
-  z-index: 60;
+  z-index: 80;
+
+  pointer-events: none;
 }
 
 #player .head {
@@ -541,7 +559,8 @@ html, body {
 
   background: #2b211d;
 
-  border-radius: 18px 18px 8px 8px;
+  border-radius:
+    18px 18px 8px 8px;
 
   z-index: 3;
 }
@@ -698,7 +717,8 @@ html, body {
 
   text-align: center;
 
-  box-shadow: 0 15px 40px rgba(0,0,0,.5);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.5);
 }
 
 #popupImage {
@@ -755,314 +775,319 @@ html, body {
 
 <div id="game">
 
-<div id="instructions">
-  Tap anywhere to move ⭐
+  <div id="instructions">
+    Tap anywhere to move ⭐
+  </div>
+
+  <div id="counter">
+    ⭐ 0 / 8
+  </div>
+
+  <div id="world">
+
+    <div id="moon"></div>
+
+    <!-- TERRAIN -->
+
+    <div class="ground-patch"
+         style="left:100px;top:300px;width:300px;height:180px;">
+    </div>
+
+    <div class="ground-patch"
+         style="left:700px;top:950px;width:350px;height:180px;">
+    </div>
+
+    <div class="ground-patch"
+         style="left:1450px;top:300px;width:300px;height:200px;">
+    </div>
+
+    <!-- GRASS -->
+
+    <div class="grass" style="left:180px;top:500px;"></div>
+    <div class="grass" style="left:210px;top:520px;"></div>
+    <div class="grass" style="left:245px;top:490px;"></div>
+    <div class="grass" style="left:600px;top:430px;"></div>
+    <div class="grass" style="left:640px;top:450px;"></div>
+    <div class="grass" style="left:1200px;top:500px;"></div>
+    <div class="grass" style="left:1240px;top:520px;"></div>
+    <div class="grass" style="left:1700px;top:550px;"></div>
+    <div class="grass" style="left:1750px;top:570px;"></div>
+
+    <!-- FLOWERS -->
+
+    <div class="flower" style="left:170px;top:540px;">✿</div>
+    <div class="flower" style="left:230px;top:560px;">✿</div>
+    <div class="flower" style="left:620px;top:470px;">✿</div>
+    <div class="flower" style="left:1170px;top:520px;">✿</div>
+    <div class="flower" style="left:1710px;top:590px;">✿</div>
+
+    <!-- ROCKS -->
+
+    <div class="rock" style="left:400px;top:350px;"></div>
+    <div class="rock"
+         style="left:430px;top:365px;width:20px;height:13px;">
+    </div>
+
+    <div class="rock" style="left:650px;top:820px;"></div>
+    <div class="rock" style="left:1180px;top:320px;"></div>
+    <div class="rock" style="left:1750px;top:850px;"></div>
+
+    <!-- BUSHES -->
+
+    <div class="bush" style="left:90px;top:700px;"></div>
+    <div class="bush" style="left:560px;top:260px;"></div>
+    <div class="bush" style="left:1160px;top:1050px;"></div>
+    <div class="bush" style="left:1740px;top:300px;"></div>
+
+    <!-- PATHS -->
+
+    <div class="path one"></div>
+    <div class="path two"></div>
+
+    <!-- TREES -->
+
+    <div class="tree" style="left:80px;top:80px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:280px;top:180px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:480px;top:80px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:680px;top:200px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:1100px;top:100px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:1400px;top:170px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:1700px;top:100px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:100px;top:1000px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:500px;top:1100px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:900px;top:1050px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:1300px;top:1080px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <div class="tree" style="left:1780px;top:1000px;">
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <!-- POND -->
+
+    <div id="pond"></div>
+
+    <!-- CAMPFIRE -->
+
+    <div id="campfire">
+      <div class="fire"></div>
+      <div class="fire-ring"></div>
+    </div>
+
+    <!-- BENCHES -->
+
+    <div class="bench" style="left:550px;top:700px;">
+      <div class="bench-back"></div>
+      <div class="bench-seat"></div>
+      <div class="bench-leg left"></div>
+      <div class="bench-leg right"></div>
+    </div>
+
+    <div class="bench" style="left:1500px;top:1000px;">
+      <div class="bench-back"></div>
+      <div class="bench-seat"></div>
+      <div class="bench-leg left"></div>
+      <div class="bench-leg right"></div>
+    </div>
+
+    <!-- FIREFLIES -->
+
+    <div class="firefly" style="left:400px;top:550px;"></div>
+    <div class="firefly"
+         style="left:470px;top:620px;animation-delay:.7s;">
+    </div>
+
+    <div class="firefly"
+         style="left:600px;top:500px;animation-delay:1.2s;">
+    </div>
+
+    <div class="firefly"
+         style="left:750px;top:800px;animation-delay:1.8s;">
+    </div>
+
+    <div class="firefly"
+         style="left:900px;top:900px;animation-delay:.4s;">
+    </div>
+
+    <div class="firefly"
+         style="left:1150px;top:650px;animation-delay:1s;">
+    </div>
+
+    <div class="firefly"
+         style="left:1300px;top:600px;animation-delay:2s;">
+    </div>
+
+    <div class="firefly"
+         style="left:1500px;top:650px;animation-delay:.8s;">
+    </div>
+
+    <div class="firefly"
+         style="left:1650px;top:800px;animation-delay:1.5s;">
+    </div>
+
+    <!-- STARS -->
+
+    <div class="star"
+         data-id="1"
+         style="left:250px;top:400px;">
+      ⭐
+    </div>
+
+    <div class="star locked"
+         data-id="2"
+         style="left:500px;top:750px;">
+      🔒
+    </div>
+
+    <div class="star locked"
+         data-id="3"
+         style="left:750px;top:300px;">
+      🔒
+    </div>
+
+    <div class="star locked"
+         data-id="4"
+         style="left:1050px;top:850px;">
+      🔒
+    </div>
+
+    <div class="star locked"
+         data-id="5"
+         style="left:1250px;top:400px;">
+      🔒
+    </div>
+
+    <div class="star locked"
+         data-id="6"
+         style="left:1450px;top:650px;">
+      🔒
+    </div>
+
+    <div class="star locked"
+         data-id="7"
+         style="left:1650px;top:400px;">
+      🔒
+    </div>
+
+    <div class="star locked"
+         data-id="8"
+         style="left:1700px;top:1000px;">
+      🔒
+    </div>
+
+    <!-- PLAYER -->
+
+    <div id="player">
+
+      <div class="hair"></div>
+
+      <div class="head"></div>
+
+      <div class="body"></div>
+
+      <div class="leg left"></div>
+
+      <div class="leg right"></div>
+
+    </div>
+
+  </div>
 </div>
 
-<div id="counter">
-  ⭐ 0 / 8
-</div>
-
-<div id="world">
-
-<!-- MOON -->
-<div id="moon"></div>
-
-<!-- =========================
-     TERRAIN
-========================= -->
-
-<div class="ground-patch"
-style="left:100px;top:300px;width:300px;height:180px;"></div>
-
-<div class="ground-patch"
-style="left:700px;top:950px;width:350px;height:180px;"></div>
-
-<div class="ground-patch"
-style="left:1450px;top:300px;width:300px;height:200px;"></div>
-
-<!-- GRASS -->
-<div class="grass" style="left:180px;top:500px;"></div>
-<div class="grass" style="left:210px;top:520px;"></div>
-<div class="grass" style="left:245px;top:490px;"></div>
-<div class="grass" style="left:600px;top:430px;"></div>
-<div class="grass" style="left:640px;top:450px;"></div>
-<div class="grass" style="left:1200px;top:500px;"></div>
-<div class="grass" style="left:1240px;top:520px;"></div>
-<div class="grass" style="left:1700px;top:550px;"></div>
-<div class="grass" style="left:1750px;top:570px;"></div>
-
-<!-- FLOWERS -->
-<div class="flower" style="left:170px;top:540px;">✿</div>
-<div class="flower" style="left:230px;top:560px;">✿</div>
-<div class="flower" style="left:620px;top:470px;">✿</div>
-<div class="flower" style="left:1170px;top:520px;">✿</div>
-<div class="flower" style="left:1710px;top:590px;">✿</div>
-
-<!-- ROCKS -->
-<div class="rock" style="left:400px;top:350px;"></div>
-<div class="rock" style="left:430px;top:365px;width:20px;height:13px;"></div>
-<div class="rock" style="left:650px;top:820px;"></div>
-<div class="rock" style="left:1180px;top:320px;"></div>
-<div class="rock" style="left:1750px;top:850px;"></div>
-
-<!-- BUSHES -->
-<div class="bush" style="left:90px;top:700px;"></div>
-<div class="bush" style="left:560px;top:260px;"></div>
-<div class="bush" style="left:1160px;top:1050px;"></div>
-<div class="bush" style="left:1740px;top:300px;"></div>
-
-<!-- =========================
-     PATHS
-========================= -->
-
-<div class="path one"></div>
-<div class="path two"></div>
-
-<!-- =========================
-     TREES
-========================= -->
-
-<div class="tree" style="left:80px;top:80px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:280px;top:180px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:480px;top:80px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:680px;top:200px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:1100px;top:100px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:1400px;top:170px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:1700px;top:100px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:100px;top:1000px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:500px;top:1100px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:900px;top:1050px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:1300px;top:1080px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<div class="tree" style="left:1780px;top:1000px;">
-  <div class="top"></div>
-  <div class="middle"></div>
-  <div class="bottom"></div>
-  <div class="trunk"></div>
-</div>
-
-<!-- =========================
-     POND
-========================= -->
-
-<div id="pond"></div>
-
-<!-- =========================
-     CAMPFIRE
-========================= -->
-
-<div id="campfire">
-
-  <div class="fire"></div>
-
-  <div class="fire-ring"></div>
-
-</div>
-
-<!-- =========================
-     BENCHES
-========================= -->
-
-<div class="bench" style="left:550px;top:700px;">
-
-  <div class="bench-back"></div>
-
-  <div class="bench-seat"></div>
-
-  <div class="bench-leg left"></div>
-
-  <div class="bench-leg right"></div>
-
-</div>
-
-<div class="bench" style="left:1500px;top:1000px;">
-
-  <div class="bench-back"></div>
-
-  <div class="bench-seat"></div>
-
-  <div class="bench-leg left"></div>
-
-  <div class="bench-leg right"></div>
-
-</div>
-
-<!-- =========================
-     FIREFLIES
-========================= -->
-
-<div class="firefly" style="left:400px;top:550px;"></div>
-<div class="firefly" style="left:470px;top:620px;animation-delay:.7s;"></div>
-<div class="firefly" style="left:600px;top:500px;animation-delay:1.2s;"></div>
-<div class="firefly" style="left:750px;top:800px;animation-delay:1.8s;"></div>
-<div class="firefly" style="left:900px;top:900px;animation-delay:.4s;"></div>
-<div class="firefly" style="left:1150px;top:650px;animation-delay:1s;"></div>
-<div class="firefly" style="left:1300px;top:600px;animation-delay:2s;"></div>
-<div class="firefly" style="left:1500px;top:650px;animation-delay:.8s;"></div>
-<div class="firefly" style="left:1650px;top:800px;animation-delay:1.5s;"></div>
-
-<!-- =========================
-     8 STARS
-========================= -->
-
-<div class="star"
-data-id="1"
-style="left:250px;top:400px;">
-⭐
-</div>
-
-<div class="star locked"
-data-id="2"
-style="left:500px;top:750px;">
-🔒
-</div>
-
-<div class="star locked"
-data-id="3"
-style="left:750px;top:300px;">
-🔒
-</div>
-
-<div class="star locked"
-data-id="4"
-style="left:1050px;top:850px;">
-🔒
-</div>
-
-<div class="star locked"
-data-id="5"
-style="left:1250px;top:400px;">
-🔒
-</div>
-
-<div class="star locked"
-data-id="6"
-style="left:1450px;top:650px;">
-🔒
-</div>
-
-<div class="star locked"
-data-id="7"
-style="left:1650px;top:400px;">
-🔒
-</div>
-
-<div class="star locked"
-data-id="8"
-style="left:1700px;top:1000px;">
-🔒
-</div>
-
-<!-- =========================
-     PLAYER
-========================= -->
-
-<div id="player">
-
-  <div class="hair"></div>
-
-  <div class="head"></div>
-
-  <div class="body"></div>
-
-  <div class="leg left"></div>
-
-  <div class="leg right"></div>
-
-</div>
-
-</div>
-</div>
 
 <!-- LOCK MESSAGE -->
 
 <div id="lockMessage">
-🔒 Find the previous star first.
+  🔒 Find the previous star first.
 </div>
+
 
 <!-- POPUP -->
 
 <div id="popup">
 
-<div id="popupBox">
+  <div id="popupBox">
 
-<img id="popupImage" src="" alt="Memory">
+    <img id="popupImage"
+         src=""
+         alt="Memory">
 
-<h2 id="popupTitle"></h2>
+    <h2 id="popupTitle"></h2>
 
-<p id="popupText"></p>
+    <p id="popupText"></p>
 
-<button id="continue">
-Continue
-</button>
+    <button id="continue">
+      Continue
+    </button>
 
-</div>
+  </div>
 
 </div>
 
@@ -1074,37 +1099,37 @@ Continue
 ========================= */
 
 const game =
-document.getElementById("game");
+  document.getElementById("game");
 
 const world =
-document.getElementById("world");
+  document.getElementById("world");
 
 const player =
-document.getElementById("player");
+  document.getElementById("player");
 
 const stars =
-document.querySelectorAll(".star");
+  document.querySelectorAll(".star");
 
 const popup =
-document.getElementById("popup");
+  document.getElementById("popup");
 
 const popupImage =
-document.getElementById("popupImage");
+  document.getElementById("popupImage");
 
 const popupTitle =
-document.getElementById("popupTitle");
+  document.getElementById("popupTitle");
 
 const popupText =
-document.getElementById("popupText");
+  document.getElementById("popupText");
 
 const continueButton =
-document.getElementById("continue");
+  document.getElementById("continue");
 
 const counter =
-document.getElementById("counter");
+  document.getElementById("counter");
 
 const lockMessage =
-document.getElementById("lockMessage");
+  document.getElementById("lockMessage");
 
 
 /* =========================
@@ -1129,11 +1154,10 @@ let cameraY = 0;
 
 
 /* =========================
-   STAR PROGRESSION
+   STARS
 ========================= */
 
 let collectedStars = 0;
-
 let unlockedStar = 1;
 
 
@@ -1143,43 +1167,519 @@ let unlockedStar = 1;
 
 const starContent = {
 
-1: {
-image:"photos/photo1.jpg",
-title:"⭐ Just You",
-text:"Jil, I don't think you realize how much I appreciate you just for being you. You don't have to do anything special or prove anything to me para maging someone worth appreciating."
-},
+  1: {
+    image: "photos/photo1.jpg",
+    title: "⭐ Just You",
+    text:
+      "Jil, I don't think you realize how much I appreciate you just for being you. You don't have to do anything special or prove anything to me para maging someone worth appreciating."
+  },
 
-2: {
-image:"photos/photo2.jpg",
-title:"⭐ The Little Things",
-text:"There's just something about you na I can't really explain. Kahit yung mga normal na bagay about you, somehow they mean more to me than you probably realize."
-},
+  2: {
+    image: "photos/photo2.jpg",
+    title: "⭐ The Little Things",
+    text:
+      "There's just something about you na I can't really explain. Kahit yung mga normal na bagay about you, somehow they mean more to me than you probably realize."
+  },
 
-3: {
-image:"photos/photo3.jpg",
-title:"⭐ You're Enough",
-text:"I know you have things about yourself na you're insecure about, pero sana alam mo na those things don't define you. Hindi naman kailangan maging perfect ka para maging someone na worth appreciating."
-},
+  3: {
+    image: "photos/photo3.jpg",
+    title: "⭐ You're Enough",
+    text:
+      "I know you have things about yourself na you're insecure about, pero sana alam mo na those things don't define you. Hindi naman kailangan maging perfect ka para maging someone na worth appreciating."
+  },
 
-4: {
-image:"photos/photo4.jpg",
-title:"⭐ How I See You",
-text:"Sometimes I wish you could see yourself the way other people see you, especially the people who genuinely appreciate you. Kasi baka mas makita mo rin yung good things about yourself na lagi mong nami-miss."
-},
+  4: {
+    image: "photos/photo4.jpg",
+    title: "⭐ How I See You",
+    text:
+      "Sometimes I wish you could see yourself the way other people see you, especially the people who genuinely appreciate you. Kasi baka mas makita mo rin yung good things about yourself na lagi mong nami-miss."
+  },
 
-5: {
-image:"photos/photo5.jpg",
-title:"⭐ The Weird You",
-text:"I appreciate you as you are, kahit yung random side mo, yung pagiging weird mo HAHAHA. Pero mas weird ata ako kaya wala rin akong masabi 😭. I actually like those little things about you kasi yun yung nagpapaka-you sayo."
-},
+  5: {
+    image: "photos/photo5.jpg",
+    title: "⭐ The Weird You",
+    text:
+      "I appreciate you as you are, kahit yung random side mo, yung pagiging weird mo HAHAHA. Pero mas weird ata ako kaya wala rin akong masabi 😭. I actually like those little things about you kasi yun yung nagpapaka-you sayo."
+  },
 
-6: {
-image:"photos/photo6.jpg",
-title:"⭐ Be Yourself",
-text:"You don't have to change yourself just because you think there's something wrong with you. There's nothing wrong with being yourself, and I hope someday you can be as kind to yourself as you are to other people."
-},
+  6: {
+    image: "photos/photo6.jpg",
+    title: "⭐ Be Yourself",
+    text:
+      "You don't have to change yourself just because you think there's something wrong with you. There's nothing wrong with being yourself, and I hope someday you can be as kind to yourself as you are to other people."
+  },
 
-7: {
-image:"photos/photo7.jpg",
-title:"⭐ Almost There",
-text:"And we're almost at the end HAHAHA. But honestly, I could probably kee
+  7: {
+    image: "photos/photo7.jpg",
+    title: "⭐ Almost There",
+    text:
+      "And we're almost at the end HAHAHA. But honestly, I could probably keep going because eight stars isn't nearly enough to put every reason why I appreciate you."
+  },
+
+  8: {
+    image: "photos/photo8.jpg",
+    title: "⭐ Through My Eyes",
+    text:
+      "If you made it this far, just know na every picture here was another reason I appreciate you. I just wish you could see yourself through my eyes para ma-realize mo what I see in you. I wish you could see the stars the way I see them in you, even sa mga bagay na tingin mo ordinary lang. Sana one day makita mo rin sa sarili mo yung mga bagay na matagal ko nang nakikita sayo."
+  }
+
+};
+
+
+/* =========================
+   CAMERA UPDATE
+========================= */
+
+function updateCamera() {
+
+  const screenWidth =
+    window.innerWidth;
+
+  const screenHeight =
+    window.innerHeight;
+
+
+  cameraX =
+    (screenWidth / 2) - playerX;
+
+  cameraY =
+    (screenHeight / 2) - playerY;
+
+
+  /*
+    Don't let the camera
+    move beyond the map.
+  */
+
+  const minCameraX =
+    screenWidth - 2000;
+
+  const minCameraY =
+    screenHeight - 1400;
+
+
+  cameraX =
+    Math.min(
+      0,
+      Math.max(
+        minCameraX,
+        cameraX
+      )
+    );
+
+
+  cameraY =
+    Math.min(
+      0,
+      Math.max(
+        minCameraY,
+        cameraY
+      )
+    );
+
+
+  world.style.transform =
+    `translate3d(${cameraX}px, ${cameraY}px, 0)`;
+
+}
+
+
+/* =========================
+   MOVE
+========================= */
+
+function movePlayer() {
+
+  const dx =
+    targetX - playerX;
+
+  const dy =
+    targetY - playerY;
+
+  const distance =
+    Math.sqrt(
+      dx * dx +
+      dy * dy
+    );
+
+
+  if (distance > 2) {
+
+    playerX +=
+      (dx / distance) * speed;
+
+    playerY +=
+      (dy / distance) * speed;
+
+  }
+
+
+  /*
+    Keep player inside map.
+  */
+
+  playerX =
+    Math.max(
+      30,
+      Math.min(
+        1970,
+        playerX
+      )
+    );
+
+
+  playerY =
+    Math.max(
+      30,
+      Math.min(
+        1370,
+        playerY
+      )
+    );
+
+
+  player.style.left =
+    playerX + "px";
+
+  player.style.top =
+    playerY + "px";
+
+}
+
+
+/* =========================
+   TAP TO MOVE
+========================= */
+
+game.addEventListener(
+  "pointerdown",
+  function(event) {
+
+    if (
+      popup.style.display === "flex"
+    ) {
+      return;
+    }
+
+
+    /*
+      Screen position + camera
+      = world position.
+    */
+
+    targetX =
+      event.clientX - cameraX;
+
+    targetY =
+      event.clientY - cameraY;
+
+
+    targetX =
+      Math.max(
+        30,
+        Math.min(
+          1970,
+          targetX
+        )
+      );
+
+
+    targetY =
+      Math.max(
+        30,
+        Math.min(
+          1370,
+          targetY
+        )
+      );
+
+  }
+);
+
+
+/* =========================
+   DISTANCE
+========================= */
+
+function distanceBetween(
+  x1,
+  y1,
+  x2,
+  y2
+) {
+
+  const dx =
+    x2 - x1;
+
+  const dy =
+    y2 - y1;
+
+  return Math.sqrt(
+    dx * dx +
+    dy * dy
+  );
+
+}
+
+
+/* =========================
+   LOCK MESSAGE
+========================= */
+
+let lockTimeout;
+
+function showLockMessage(id) {
+
+  lockMessage.textContent =
+    `🔒 You need to find Star ${id - 1} first.`;
+
+  lockMessage.style.display =
+    "block";
+
+
+  clearTimeout(lockTimeout);
+
+
+  lockTimeout =
+    setTimeout(
+      function() {
+
+        lockMessage.style.display =
+          "none";
+
+      },
+      1800
+    );
+
+}
+
+
+/* =========================
+   CHECK STARS
+========================= */
+
+function checkStars() {
+
+  stars.forEach(
+    function(star) {
+
+      if (
+        star.dataset.collected === "true"
+      ) {
+        return;
+      }
+
+
+      const id =
+        Number(
+          star.dataset.id
+        );
+
+
+      const starX =
+        parseFloat(
+          star.style.left
+        );
+
+
+      const starY =
+        parseFloat(
+          star.style.top
+        );
+
+
+      const distance =
+        distanceBetween(
+          playerX,
+          playerY,
+          starX,
+          starY
+        );
+
+
+      if (distance < 70) {
+
+        /*
+          Locked star
+        */
+
+        if (id > unlockedStar) {
+
+          showLockMessage(id);
+
+          return;
+
+        }
+
+
+        /*
+          Collect star
+        */
+
+        const content =
+          starContent[id];
+
+
+        star.dataset.collected =
+          "true";
+
+
+        star.style.display =
+          "none";
+
+
+        collectedStars++;
+
+
+        /*
+          Unlock next star.
+        */
+
+        if (
+          id === unlockedStar &&
+          unlockedStar < 8
+        ) {
+
+          unlockedStar++;
+
+        }
+
+
+        counter.textContent =
+          `⭐ ${collectedStars} / 8`;
+
+
+        updateStarLocks();
+
+
+        /*
+          Open message.
+        */
+
+        popupImage.src =
+          content.image;
+
+        popupTitle.textContent =
+          content.title;
+
+        popupText.textContent =
+          content.text;
+
+        popup.style.display =
+          "flex";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================
+   STAR LOCK VISUALS
+========================= */
+
+function updateStarLocks() {
+
+  stars.forEach(
+    function(star) {
+
+      const id =
+        Number(
+          star.dataset.id
+        );
+
+
+      if (
+        star.dataset.collected === "true"
+      ) {
+
+        star.style.display =
+          "none";
+
+        return;
+
+      }
+
+
+      if (id <= unlockedStar) {
+
+        star.classList.remove(
+          "locked"
+        );
+
+        star.textContent =
+          "⭐";
+
+      } else {
+
+        star.classList.add(
+          "locked"
+        );
+
+        star.textContent =
+          "🔒";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+continueButton.addEventListener(
+  "click",
+  function() {
+
+    popup.style.display =
+      "none";
+
+  }
+);
+
+
+/* =========================
+   GAME LOOP
+========================= */
+
+function gameLoop() {
+
+  movePlayer();
+
+  updateCamera();
+
+  checkStars();
+
+  requestAnimationFrame(
+    gameLoop
+  );
+
+}
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+player.style.left =
+  playerX + "px";
+
+player.style.top =
+  playerY + "px";
+
+updateStarLocks();
+
+updateCamera();
+
+gameLoop();
+
+</script>
+
+</body>
+</html>
