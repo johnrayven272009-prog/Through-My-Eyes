@@ -541,7 +541,7 @@ body {
 
 /* COLLECTION ANIMATION */
 
-.star.collected {
+..star.collected {
   animation:
     starCollect 0.45s ease-out forwards;
 }
@@ -555,17 +555,10 @@ body {
     opacity: 1;
   }
 
-  60% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.5);
-    opacity: 1;
-  }
-
   100% {
     transform:
       translate(-50%, -50%)
-      scale(0);
+      scale(1.5);
     opacity: 0;
   }
 
@@ -1745,24 +1738,24 @@ collectedStars++;
           Open message.
         */
 
-        popupImage.src =
-          content.image;
+        setTimeout(
+  function() {
 
-        popupTitle.textContent =
-          content.title;
+    popupImage.src =
+      content.image;
 
-        popupText.textContent =
-          content.text;
+    popupTitle.textContent =
+      content.title;
 
-        popup.style.display =
-          "flex";
+    popupText.textContent =
+      content.text;
 
-      }
+    popup.style.display =
+      "flex";
 
-    }
-  );
-
-}
+  },
+  450
+);
 
       /* =========================
    EBIT NPC
