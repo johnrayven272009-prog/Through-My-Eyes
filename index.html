@@ -599,7 +599,67 @@ body {
 #player .leg.right {
   right: 9px;
 }
+      /* =========================
+   NPC
+========================= */
 
+#npc {
+  position: absolute;
+  width: 42px;
+  height: 58px;
+  left: 800px;
+  top: 600px;
+  z-index: 70;
+  pointer-events: none;
+}
+      
+#npc .npc-head {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 7px;
+  top: 10px;
+  background: #f0c1a0;
+  border-radius: 50%;
+}
+
+#npc .npc-hair {
+  position: absolute;
+  width: 31px;
+  height: 18px;
+  left: 5px;
+  top: 1px;
+  background: #3a2924;
+  border-radius: 18px 18px 8px 8px;
+  z-index: 3;
+}
+
+#npc .npc-body {
+  position: absolute;
+  width: 30px;
+  height: 24px;
+  left: 6px;
+  top: 36px;
+  background: #806080;
+  border-radius: 7px;
+}
+
+#npc .npc-leg {
+  position: absolute;
+  width: 9px;
+  height: 15px;
+  top: 58px;
+  background: #25252d;
+  border-radius: 4px;
+}
+
+#npc .npc-left {
+  left: 9px;
+}
+
+#npc .npc-right {
+  right: 9px;
+}
 /* =========================
    UI
 ========================= */
@@ -1045,22 +1105,25 @@ body {
     <!-- PLAYER -->
 
     <div id="player">
+      
+  <div class="hair"></div>
+  <div class="head"></div>
+  <div class="body"></div>
+  <div class="leg left"></div>
+  <div class="leg right"></div>
 
-      <div class="hair"></div>
-
-      <div class="head"></div>
-
-      <div class="body"></div>
-
-      <div class="leg left"></div>
-
-      <div class="leg right"></div>
-
-    </div>
-
-  </div>
+    </div/>
+        
+<div id="npc">
+  <div class="npc-hair"></div>
+  <div class="npc-head"></div>
+  <div class="npc-body"></div>
+  <div class="npc-leg npc-left"></div>
+  <div class="npc-leg npc-right"></div>
 </div>
 
+</div>
+</div>
 
 <!-- LOCK MESSAGE -->
 
@@ -1534,16 +1597,6 @@ function checkStars() {
         /*
           Unlock next star.
         */
-
-        if (
-          id === unlockedStar &&
-          unlockedStar < 8
-        ) {
-
-          unlockedStar++;
-
-        }
-
 
         counter.textContent =
           `⭐ ${collectedStars} / 8`;
