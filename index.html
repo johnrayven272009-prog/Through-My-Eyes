@@ -1628,7 +1628,6 @@ function updateStarLocks() {
 
 }
 
-
 /* =========================
    CONTINUE
 ========================= */
@@ -1637,8 +1636,18 @@ continueButton.addEventListener(
   "click",
   function() {
 
-    popup.style.display =
-      "none";
+    popup.style.display = "none";
+
+    /*
+      Unlock the next star only
+      after the message is read.
+    */
+
+    if (unlockedStar < 8) {
+      unlockedStar++;
+    }
+
+    updateStarLocks();
 
   }
 );
