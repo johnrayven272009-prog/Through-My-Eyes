@@ -1705,22 +1705,17 @@ function checkStars() {
           Collect star
         */
 
-        star.dataset.collected =
-  "true";
+        popupImage.src =
+  content.image;
 
-star.classList.add(
-  "collected"
-);
+popupTitle.textContent =
+  content.title;
 
-setTimeout(
-  function() {
-    star.style.display =
-      "none";
-  },
-  450
-);
+popupText.textContent =
+  content.text;
 
-collectedStars++;
+popup.style.display =
+  "flex";
 
 
         /*
