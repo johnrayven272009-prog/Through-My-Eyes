@@ -769,6 +769,34 @@ body {
   font-size: 14px;
 }
 
+      /* =========================
+   TALK PROMPT
+========================= */
+
+#talkPrompt {
+  position: fixed;
+
+  display: none;
+
+  left: 50%;
+  bottom: 90px;
+
+  transform: translateX(-50%);
+
+  padding: 8px 18px;
+
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  z-index: 200;
+
+  pointer-events: none;
+}
+
 /* =========================
    LOCK MESSAGE
 ========================= */
@@ -1200,6 +1228,10 @@ body {
 
 
 <!-- POPUP -->
+
+<div id="talkPrompt">
+  Talk
+</div>
 
 <div id="popup">
 
@@ -1740,6 +1772,54 @@ aryan.addEventListener(
 
   }
 );
+
+      /* =========================
+   NPC TALK DISTANCE
+========================= */
+
+const talkPrompt =
+  document.getElementById("talkPrompt");
+
+function checkNPCs() {
+
+  const npcList = [
+    {
+      element: ebit,
+      x: 800,
+      y: 600
+    },
+    {
+      element: aryan,
+      x: 1400,
+      y: 1000
+    }
+  ];
+
+  let nearNPC = false;
+
+  npcList.forEach(function(npc) {
+
+    const distance =
+      distanceBetween(
+        playerX,
+        playerY,
+        npc.x,
+        npc.y
+      );
+
+    if (distance < 100) {
+      nearNPC = true;
+    }
+
+  });
+
+  if (nearNPC) {
+    talkPrompt.style.display = "block";
+  } else {
+    talkPrompt.style.display = "none";
+  }
+
+}
 /* =========================
    STAR LOCK VISUALS
 ========================= */
@@ -1829,6 +1909,8 @@ npcMessageOpen = false;
 
 function gameLoop() {
 
+      checkNPCs();
+      
   movePlayer();
 
   updateCamera();
