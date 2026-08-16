@@ -1005,6 +1005,51 @@ body {
 
   font-weight: bold;
 }
+      #ending {
+  position: fixed;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.92);
+
+  z-index: 9999;
+}
+
+#endingBox {
+  width: 80%;
+  max-width: 500px;
+
+  padding: 35px;
+
+  text-align: center;
+
+  background: #111;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 0 30px rgba(255,255,255,.15);
+}
+
+#endingBox h1 {
+  font-size: 32px;
+
+  margin-bottom: 20px;
+}
+
+#endingBox p {
+  font-size: 18px;
+
+  line-height: 1.6;
+
+  margin: 12px 0;
+}
+      
 </style>
 </head>
 
@@ -1024,6 +1069,7 @@ body {
 
     <div id="moon"></div>
 
+        
     <!-- TERRAIN -->
 
     <div class="ground-patch"
@@ -1347,6 +1393,24 @@ body {
 
 </div>
 
+<div id="ending">
+
+  <div id="endingBox">
+
+    <h1>Through My Eyes</h1>
+
+    <p>
+      Thank you for seeing everything
+      through my eyes.
+    </p>
+
+    <p>
+      ❤️
+    </p>
+
+  </div>
+
+</div>
 
 <script>
 
@@ -2061,12 +2125,29 @@ continueButton.addEventListener(
     */
 
     if (!npcMessageOpen) {
+
   if (unlockedStar < 8) {
     unlockedStar++;
   }
 
   updateStarLocks();
+
 }
+
+if (
+  collectedStars >= 8 &&
+  !npcMessageOpen
+) {
+
+const ending =
+  document.getElementById("ending");
+
+ending.style.display =
+  "flex";
+
+}
+
+npcMessageOpen = false;
 
 npcMessageOpen = false;
 
