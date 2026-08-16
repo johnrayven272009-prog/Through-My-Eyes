@@ -513,6 +513,31 @@ body {
 
   opacity: .65;
 }
+      .star {
+  animation: starFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes starFloat {
+
+  0% {
+    transform:
+      translate(-50%, -50%)
+      translateY(0px);
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      translateY(-6px);
+  }
+
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translateY(0px);
+  }
+
+      }
 
 /* =========================
    PLAYER
