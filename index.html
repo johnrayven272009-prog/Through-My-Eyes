@@ -1634,13 +1634,17 @@ function checkStars() {
 
 const ebit = document.getElementById("ebit");
 
-ebit.addEventListener("click", function() {
+ebit.addEventListener(
+  "click",
+  function() {
 
-  popupTitle.textContent = "Ebit";
+    npcMessageOpen = true;
 
-  popupText.textContent =
-    "Hi jil, I wanted you to know that I am always thankful for having you as my friend. Thankyou for being there for me and sa mga pagsama saakin, I treasure our friendship and I hope na you always choose happiness:) loveulots!!";
+    popupTitle.textContent =
+      "Ebit";
 
+    popupText.textContent =
+      "Hi jil, I wanted you to know that I am always thankful for having you as my friend. Thankyou for being there for me and sa mga pagsama saakin, I treasure our friendship and I hope na you always choose happiness:) loveulots!!";
   popupImage.src = "";
 
   popup.style.display = "flex";
@@ -1703,6 +1707,8 @@ function updateStarLocks() {
    CONTINUE
 ========================= */
 
+let npcMessageOpen = false;
+
 continueButton.addEventListener(
   "click",
   function() {
@@ -1714,11 +1720,15 @@ continueButton.addEventListener(
       after the message is read.
     */
 
-    if (unlockedStar < 8) {
-      unlockedStar++;
-    }
+    if (!npcMessageOpen) {
+  if (unlockedStar < 8) {
+    unlockedStar++;
+  }
 
-    updateStarLocks();
+  updateStarLocks();
+}
+
+npcMessageOpen = false;
 
   }
 );
